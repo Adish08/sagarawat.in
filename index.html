@@ -204,10 +204,14 @@
             </a>
         </div>
         <footer>
-            <p>&copy; 2024 Sagarawat Electricals</p>
+            <p>&copy; <span id="copyrightYear"></span> Sagarawat Electricals. All rights reserved.></p>
         </footer>
     </div>
     <script>
+        // Get the current year and update the copyright year
+         var currentYear = new Date().getFullYear();
+        document.getElementById("copyrightYear").textContent = currentYear; 
+        
         // Wait for the window to load before executing the script
         window.onload = function() {
             // Get the video element
