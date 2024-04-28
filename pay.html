@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay To Sagarawat Electricals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/TheLegendaryPhoenix08/sagarawatele/DP.png">
+    <style>
+
+        /* Typography */
+        body {
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.6;
+    background-color: #f7f7f7;
+    display: flex; /* Add this line */
+    flex-direction: column; /* Add this line */
+    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+    main {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -70px; 
+}
+
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Layout */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 10px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .logo img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            margin-left: auto;
+            margin-right: 20px;
+        }
+
+        .nav-menu li {
+            margin-right: 20px;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu li a:hover {
+            color: #ff6600;
+        }
+
+        .nav-toggle {
+            display: none;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            height: auto;
+            flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+
+            
+        }
+
+        .hero-content {
+            max-width: 500px;
+            text-align: left;
+        }
+
+        .hero-content h1 {
+            font-size: 36px;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #ff6600;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 111px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e65c00;
+        }
+
+        .hero-image {
+            display: flex;
+            flex-direction: column-reverse; /* Interchange UPI image and WhatsApp button */
+            align-items: center;
+            max-width: 400px;
+        }
+
+        .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 111px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+    .whatsapp-btn i {
+    font-size: 1.5rem; /* Increase the icon size */
+    margin-right: 8px; /* Add some space between icon and text */
+}
+
+        .whatsapp-btn:hover {
+            background-color: #208837;
+        }
+
+        .hr {
+            margin-top: -50px; /* Move separator line up */
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                margin-right: 30px;
+            }
+
+            .nav-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: #333;
+                margin-bottom: 5px;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            /* Adjust QR code and button positioning for mobile */
+            .hero-image {
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .hero-image img:first-child {
+                width: auto;
+                max-width: 100%;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+        }
+
+        /* Desktop styles */
+        @media (min-width: 769px) {
+            .hero {
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                }
+
+            .hero-content {
+                text-align: left;
+                margin-right: 40px;
+            }
+
+            .hero-image {
+                flex-direction: column;
+                align-items: center;
+                width: auto;
+                max-width: 400px;
+            }
+        }
+
+        /* Responsive image sizing */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <img src="https://raw.githubusercontent.com/TheLegendaryPhoenix08/sagarawatele/main/SE%20Block%20Brandspot365.svg" alt="Logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="https://sagarawat.in">Home</a></li>
+                <li><a href="https://sagarawat.in/about">About</a></li>
+                <li><a href="https://wa.me/918989220808">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Pay To Sagarawat Electricals</h1>
+                <p>Click on the Following Button or Scan The Following QR Code To Pay via UPI, all applications are Supported !</p>
+                <a href="upi://pay?cu=INR&pa=paytmqr281005050101ouaw91beeto6@paytm&pn=Sagarawat%20Ele&tn=retail&mam=1" class="btn" target="_blank">Click To Pay !</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://cdn.jsdelivr.net/gh/TheLegendaryPhoenix08/sagarawatele/UPI.png" alt="UPI Image">
+                <img src="https://cdn.jsdelivr.net/gh/TheLegendaryPhoenix08/sagarawatele/pay.jpg" alt="UPI QR Code">
+                <a href="https://wa.me/918989220808" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Contact us on WhatsApp</a>
+            </div>
+        </section>
+    </main>
+
+    <div class="footer-content">
+
+        <hr> 
+
+    <div class="footer-content">
+        <p>&copy; 2024 Sagarawat Electricals, 25-26 Dr. Bhabha Marg, Near Private Bus Stand, Neemuch M.P. - 458441 | Contact : 7423220808, 7423452808 |</p>
+    </div>
+    </div>
+
+    <script>
+        // Toggle mobile navigation
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animate sections on scroll
+        const sections = document.querySelectorAll('section');
+
+        function animateSections() {
+            const triggerPoint = window.innerHeight * 0.8;
+
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+
+                if (sectionTop < triggerPoint) {
+                    section.classList.add('visible');
+                } else {
+                    section.classList.remove('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateSections);
+
+        // Initialize animations on page load
+        animateSections();
+    </script>
+</body>
+</html>
