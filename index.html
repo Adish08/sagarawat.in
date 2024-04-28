@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagarawat Electricals - Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit&family=Raleway:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/TheLegendaryPhoenix08/sagarawatele/DP.png">
+    <style>
+        /* Reset and basic styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Container styles */
+        .container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Video background */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0; /* Start with opacity 0 for the video */
+            transition: opacity 1s ease; /* Fade in the video over 1 second */
+        }
+
+        .video-background img {
+            width: 100%; /* Cover the whole container */
+            height: 100%;
+            object-fit: cover; /* This will maintain the aspect ratio while covering the entire container */
+   	display: block; /* Remove extra space below the image */
+        }
+
+        /* Content styles */
+        .content {
+            text-align: center;
+            color: #fff;
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            animation: float 6s ease-in-out infinite;
+            margin-bottom: 50px; /* Increased distance from the bottom */
+        }
+
+        .content h1 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Button styles */
+        .contact-btn {
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            animation: breathe 3s infinite;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* WhatsApp icon styles */
+        .whatsapp-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Breathing animation */
+        @keyframes breathe {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .content {
+                max-width: 90%;
+                border-radius: 10px;
+            }
+            .content h1 {
+                font-size: 3rem;
+            }
+            .content p {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Mobile styles */
+        @media (max-width: 680px) {
+            .content {
+                max-width: 100%;
+                padding: 10px;
+                border-radius: 20px;
+                margin: 20px;
+                animation: float 6s ease-in-out infinite;
+            }
+        }
+
+        /* Footer styles */
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        footer p {
+            color: #fff;
+            font-size: 0.8rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="video-background">
+            <video autoplay muted>
+                <source src="https://cdn.jsdelivr.net/gh/TheLegendaryPhoenix08/sagarawatele/Render.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <img src="https://raw.githubusercontent.com/TheLegendaryPhoenix08/sagarawatele/main/Render.png" alt="Background Image">
+        </div>
+        <div class="content">
+            <h1>We Are Coming Soon!</h1>
+            <p>Thanks For Your Visit, Stay Tuned with us to Explore a new Horizon of Possibilities with Sagarawat Electricals</p>
+            <a href="https://wa.me/918989220808" class="contact-btn" target="_blank">
+                <span class="whatsapp-icon fab fa-whatsapp"></span> Contact Us
+            </a>
+        </div>
+        <footer>
+            <p>Copyright © Sagarawat Electricals. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        // Wait for the window to load before executing the script
+        window.onload = function() {
+            // Get the video element
+            var video = document.querySelector('.video-background video');
+
+            // Function to check if a video is fully loaded
+            function isVideoLoaded() {
+                return video.readyState === 4;
+            }
+
+            // Check if the video is loaded, then fade it in
+            if (isVideoLoaded()) {
+                video.style.opacity = 1;
+            } else {
+                video.addEventListener('loadeddata', function() {
+                    video.style.opacity = 1;
+                });
+            }
+        }
+    </script>
+</body>
+</html>
