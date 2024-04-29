@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pay To Sagarawat Electricals</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/TheLegendaryPhoenix08/sagarawatele/DP.png">
+    <link rel="icon" type="image/png" href="Favicon.svg">
     <style>
 
         /* Typography */
@@ -249,12 +249,12 @@
 <body>
     <header>
         <nav>
-            <a href="#" class="logo">
-                <img src="https://raw.githubusercontent.com/TheLegendaryPhoenix08/sagarawatele/main/SE%20Block%20Brandspot365.svg" alt="Logo">
+            <a href="index.html" class="logo">
+                <img src="HeaderLogo.svg" alt="Logo">
             </a>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="https://sagarawat.in/about">About</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="https://wa.me/918989220808">Contact</a></li>
             </ul>
             <div class="nav-toggle">
@@ -270,26 +270,26 @@
             <div class="hero-content">
                 <h1>Pay To Sagarawat Electricals</h1>
                 <p>Click on the Following Button or Scan The Following QR Code To Pay via UPI, all applications are Supported !</p>
-                <a href="upi://pay?cu=INR&pa=paytmqr281005050101ouaw91beeto6@paytm&pn=Sagarawat%20Ele&tn=retail&mam=1" class="btn" target="_blank">Click To Pay !</a>
+                <a href="upi://pay?pa=paytmqr1am6ji1b2g@paytm&pn=Sagarawat%20Electricals" class="btn" target="_blank">Click To Pay !</a>
             </div>
             <div class="hero-image">
-                <img src="https://cdn.jsdelivr.net/gh/TheLegendaryPhoenix08/sagarawatele/UPI.png" alt="UPI Image">
-                <img src="https://cdn.jsdelivr.net/gh/TheLegendaryPhoenix08/sagarawatele/pay.jpg" alt="UPI QR Code">
+                <img src="UPI.png" alt="UPI Apps">
+                <img src="QRCode.svg" alt="UPI QR Code">
                 <a href="https://wa.me/918989220808" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Contact us on WhatsApp</a>
             </div>
         </section>
     </main>
 
     <div class="footer-content">
-
         <hr> 
-
     <div class="footer-content">
-        <p>&copy; 2024 Sagarawat Electricals, 25-26 Dr. Bhabha Marg, Near Private Bus Stand, Neemuch M.P. - 458441 | Contact : 7423220808, 7423452808 |</p>
+        <p>&copy; <span id="copyrightYear"></span> Sagarawat Electricals, 25-26 Dr. Bhabha Marg, Near Private Bus Stand, Neemuch M.P. - 458441 | Contact : 7423220808, 7423452808 |</p>
     </div>
     </div>
-
     <script>
+        // Get the current year and update the copyright year
+        var currentYear = new Date().getFullYear();
+        document.getElementById("copyrightYear").textContent = currentYear;
         // Toggle mobile navigation
         const navToggle = document.querySelector('.nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
@@ -297,39 +297,6 @@
         navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
         });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Animate sections on scroll
-        const sections = document.querySelectorAll('section');
-
-        function animateSections() {
-            const triggerPoint = window.innerHeight * 0.8;
-
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-
-                if (sectionTop < triggerPoint) {
-                    section.classList.add('visible');
-                } else {
-                    section.classList.remove('visible');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', animateSections);
-
-        // Initialize animations on page load
-        animateSections();
     </script>
 </body>
 </html>
