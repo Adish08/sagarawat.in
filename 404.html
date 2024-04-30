@@ -1,11 +1,207 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; URL=/pay.html">
-    <title>Page Redirecting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagarawat Electricals - Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit&family=Raleway:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
+    <link rel="icon" type="image/png" href="favicon.svg">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        /* Reset and basic styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Container styles */
+        .container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Video background */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Content styles */
+        .content {
+            text-align: center;
+            color: #fff;
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            animation: float 6s ease-in-out infinite;
+            
+            margin-bottom: 50px;
+        }
+
+        .content h1 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Button styles */
+        .contact-btn {
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            backdrop-filter: blur(0px);
+            border-radius: 30px;
+            animation: breathe 3s infinite;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Home page icon styles */
+        .home-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Breathing animation */
+        @keyframes breathe {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .content {
+                max-width: 90%;
+                border-radius: 10px;
+            }
+            .content h1 {
+                font-size: 3rem;
+            }
+            .content p {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Mobile styles */
+        @media (max-width: 680px) {
+            .content {
+                max-width: 100%;
+                padding: 10px;
+                border-radius: 20px;
+                margin: 20px;
+                animation: float 6s ease-in-out infinite;
+            }
+        }
+
+        /* Footer styles */
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            backdrop-filter: blur(0px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        footer p {
+            color: #fff;
+            font-size: 0.8rem;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
-    Redirecting to <a href="/pay.html">pay.html</a>
+    <div class="container w3-animate-opacity">
+        <div class="video-background">
+            <video autoplay muted>
+                <source src="Render.mp4" type="video/mp4">
+                Your browser does not support the video-tag.
+            </video>
+        </div>
+        <div class="content">
+            <h1>404 Error !</h1>
+            <p>Oops! We're sorry, but the page you're looking for can't be found. Perhaps there's an error, or the page has been moved.</p>
+            <a href="https://sagarawat.in/" class="contact-btn" target="_blank">
+                <span class="home-icon fas fa-home"></span> Go Back To Home Page
+            </a>
+        </div>
+        <footer>
+            <p>&copy; <span id="copyrightYear"></span> Sagarawat Electricals. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        // Get the current year and update the copyright year
+        var currentYear = new Date().getFullYear();
+        document.getElementById("copyrightYear").textContent = currentYear;
+    </script>
 </body>
 </html>
