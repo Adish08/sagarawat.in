@@ -61,7 +61,6 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
             animation: float 6s ease-in-out infinite;
-            
             margin-bottom: 50px;
         }
 
@@ -177,6 +176,27 @@
             font-size: 0.8rem;
             margin: 0;
         }
+
+        /* Visitor counter styles */
+        .visitor-counter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .visitor-counter p {
+            font-size: 25px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .visitor-counter span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -193,17 +213,24 @@
             <a href="https://api.whatsapp.com/send/?phone=918989220808&text=Hi%20There,%20I%20Would%20Like%20To%20Know%20About%20Sagarawat%20Electricals" class="contact-btn" target="_blank">
                 <span class="whatsapp-icon fab fa-whatsapp"></span> Contact Us
             </a>
+            <p>Looking For UPI Payment Page? <a href="pay.html">Click Here!</a></p>
+            <div class="visitor-counter">
+                <p>You are the <span id="dupli_hit_counter"></span>&nbsp;visitor of the page! Congrats 🎉</p>
 
-            <p>Looking For UPI Payment Page? <a href="pay.html">Click Here!</a>
+            </div>
         </div>
         <footer>
             <p>&copy; <span id="copyrightYear"></span> Sagarawat Electricals. All rights reserved.</p>
         </footer>
-    </div>
-    <script>
+        
+        <!-- Badge Code - Do Not Change The Code -->
+        <div class="col-xs-12 mt20" id="bg">
+            <span class="text" id="dupli_hit_counter" style="color: #443c94;"></span>
+            <input type="hidden" id="site_val" value="https://visitorshitcounter.com/counterDisplay?code=83af2fce105515c8655672e86102b9ff&style=0017&pad=4&type=page&initCount=1">
+        </div>
+        <script src="https://visitorshitcounter.com/js/badgess.js?v=1714452661"></script>
+        <script>        
         // Get the current year and update the copyright year
-        var currentYear = new Date().getFullYear();
-        document.getElementById("copyrightYear").textContent = currentYear;
-    </script>
-</body>
-</html> 
+            var currentYear = new Date().getFullYear();
+            document.getElementById("copyrightYear").textContent = currentYear;</script>
+        <!-- Badge Code End Here -->
