@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sagarawat Electricals</title>
+    <link rel="icon" type="image/png" href="Favicon.svg">
     <style>
         * {
             box-sizing: border-box;
@@ -23,14 +24,9 @@
             margin: 0;
         }
 
-        header {
-            padding: 1rem;
-            text-align: center;
-            width: 100%;
-        }
 
        .container {
-            max-width: 1200px;
+            max-width: auto;
             padding: 2rem;
             background-color: #fff;
             border: 2px solid #ffa500;
@@ -97,16 +93,23 @@
     <header>
         <h4 style="text-align: center;">Go Back To Pay Page? <a href="/pay" style="text-decoration: none; color: #ff6600;">Click Here !</a> 
     <div class="container">
-        <h1>Bank Details - Sagarawat Electricals</h1>
-        <h2>Bank Name: Axis Bank Ltd, Neemuch Branch</h2>
-        <p>Account Holder: Sagarawat Electricals</p>
-        <p>Account Number: 1234567890</p>
-        <p>IFSC Code: ABCD1234567</p>
+      <h1>Bank Details - Sagarawat Electricals</h1>
+      <p> </p>
+      <p><span style="color:#ff6600">Bank Name:</span> Axis Bank Ltd, Neemuch Branch<p>
+      <p><span style="color:#ff6600">Account Holder:</span> Sagarawat Electricals</p>
+      <p><span style="color:#ff6600">Account Number:</span> 9190 300 7235 1044</p>
+      <p><span style="color:#ff6600">IFSC Code:</span> UTIB 0000 513</p>
         <h2>Any Queries?</h2>
         <p>Contact Us on <a href="https://api.whatsapp.com/send/?phone=918989220808" target="_blank" style="text-decoration: underline; color: #ff6600;">WhatsApp</a> for any Queries.</p>
     </div>
     <footer>
-        <p>&copy; 2023 Sagarawat Electricals. All rights reserved.</p>
+        <p>&copy; <span id="copyrightYear"></span> Sagarawat Electricals. All rights reserved.</p>
     </footer>
+        <script>
+        // Get the current year and update the copyright year
+        var currentYear = new Date().getFullYear();
+        document.getElementById("copyrightYear").textContent = currentYear;
+
+        </script>    
 </body>
 </html> 
