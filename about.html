@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sagarawat Electricals - About Us</title>
+  <script src="https://kit.fontawesome.com/98efc33aae.js" crossorigin="anonymous"></script>  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+      background: #f5f5f5;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+ width: 150px;
+ height: 80px; 
+ background-image: url('https://via.placeholder.com/100x50');
+ background-size: cover;
+ background-repeat: no-repeat;
+ color: transparent;
+}
+
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .nav a.active {
+      color: #ff6600;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .hero .content {
+      max-width: 500px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #ff6600;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    .hero .image {
+      width: 100%;
+      height: 300px;
+      background: url("download.jpeg") center/cover no-repeat;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .features {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .features .feature {
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .features .feature h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff6600;
+    }
+
+    .features .feature p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    .features .feature i {
+      font-size: 2rem;
+      color: #ff6600;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .footer .social {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer .social a {
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    .footer .social a:hover {
+      color: #ff6600;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+      }
+
+      .hero .content {
+        max-width: 100%;
+      }
+
+      .hero .image {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 50px;
+      }
+
+      .features {
+        flex-direction: column;
+      }
+
+      .features .feature {
+        max-width: 100%;
+      }
+    }
+
+    .directors {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap; /* Added to allow wrapping */
+}
+
+.director-card {
+  position: relative;
+  width: 300px;
+  height: 450px;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  margin-bottom: 2rem; /* Added margin-bottom for spacing on mobile */
+}
+
+.director-card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background-color: #ff6600;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.director-card:hover {
+  transform: translateY(-10px);
+}
+
+.director-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-top: 75px;
+  border: 5px solid #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.director-card .content {
+  padding: 20px;
+  text-align: center;
+  margin-top: 200px;
+}
+
+.director-card h3 {
+  font-size: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 20px;
+  color: #ff6600;
+  margin-bottom: 10px;
+}
+
+.director-card p {
+  font-size: 1rem;
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.5;
+  color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .directors {
+    flex-direction: column; /* Changed to column for mobile */
+    align-items: center; /* Added to center the cards */
+  }
+
+  .director-card {
+    margin-right: 0; /* Removed margin-right for mobile */
+  }
+}
+
+.director-heading {
+  text-align: center;
+  color: #ff6600;
+  margin-bottom: 2rem;
+}
+
+.map-container {
+  margin-top: 2rem;
+}
+
+.contact-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.contact-section h2 {
+  color: #ff6600;
+  margin-bottom: 1rem;
+}
+
+.contact-section p {
+  margin: 0.5rem 0;
+}
+
+.service-heading {
+  text-align: center;
+  color: #ff6600;
+  margin-bottom: 2rem;
+}
+
+.map-heading {
+  text-align: center;
+  color: #ff6600;
+  margin-bottom: 1rem;
+}
+
+.map-container iframe {
+
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+
+}
+
+.contact-section {
+  border: 2px solid #ff6600;
+  border-radius: 20px;
+  padding: 2rem;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="logo">Sagarawat Electricals</h1>
+      
+      <nav class="nav">
+        <a href="/" class="active">Home</a>
+
+        <a href="https://api.whatsapp.com/send/?phone=918989220808">Contact Us</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="content">
+        <h1>About Sagarawat Electricals.</h1>
+        <p>With a rich legacy spanning over four decades, Sagarawat Electricals has established itself as a leading provider of electrical and lighting solutions for both residential and industrial customers. Our unwavering commitment to quality and trustworthy products has earned us a reputation as a trusted name in the market.
+          At Sagarawat Electricals, quality and customer satisfaction are at the forefront of everything we do.  As our tagline eloquently states, "A Tradition of Trust," we have built a legacy of reliability and trustworthiness over the years, fostering long-lasting relationships with our valued patrons.</p>
+      </div>
+      <div class="image"></div>
+    </section>
+    <hr>
+    <h2 class="service-heading">Services We Offer :</h2>
+    <section class="features">
+      <div class="feature">
+        <i class="fas fa-bolt"></i>
+        <h3>Power and Communication Cables</h3>
+        <p>High-quality cables designed for efficient power transmission and reliable communication networks, ensuring seamless connectivity and performance.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-lightbulb"></i>
+        <h3>Lighting and Illumination</h3>
+        <p>A wide range of innovative lighting solutions, including energy-efficient options, to illuminate residential, commercial, and industrial spaces with style and functionality.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-fan"></i>
+        <h3>Fans and Air Quality Solutions</h3>
+        <p>Effective air circulation and purification systems to promote optimal indoor air quality, ensuring a comfortable and healthy environment.</p>
+      </div>
+      <div class="feature">
+        <i class="fa-solid fa-house-signal"></i>
+        <h3>Wiring Devices and Smart Home Solutions</h3>
+        <p>Advanced wiring devices and cutting-edge smart home technologies that integrate seamlessly into modern living spaces, providing convenience and energy efficiency.</p>
+      </div>
+      <div class="feature">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <h3>Conduits and Allied Accesories</h3>
+        <p>Durable conduits and accompanying accessories to safely route and protect electrical wiring, ensuring compliance with industry standards and prolonging the lifespan of installations.</p>
+      </div>
+      <div class="feature">
+        <i class="fa-solid fa-industry"></i>
+        <h3>Industrial Switchgears</h3>
+        <p>Robust and reliable switchgear solutions for industrial applications, offering efficient power distribution, control, and protection for critical equipment and operations.</p>
+      </div>
+    </section>
+    <hr>
+    <h2 class="director-heading">Our Leadership</h2>
+    <section class="directors">
+      <div class="director-card">
+        <img src="https://via.placeholder.com/150" alt="Director 1">
+        <div class="content">
+          <h3>Shantilal Sagarawat</h3>
+          <p>Chairman</p>
+          <p>Shantilal founded Sagarawat Electricals in the Year 1996. He has done his studies in LAW and compeleted LLB with proud.</p>
+        </div>
+      </div>
+      <div class="director-card">
+        <img src="https://via.placeholder.com/150" alt="Director 2">
+        <div class="content">
+          <h3>Paras Sagarawat</h3>
+          <p>Managing Director</p>
+          <p>Paras, continuing the legacy of his father transformed the firm into a miraculously successful bussiness with his dedication and intelligence.</p>
+        </div>
+      </div>
+    </section>
+    <hr>
+    <h2 class="map-heading">Our Location</h2>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3631.909990216347!2d74.87052267609101!3d24.45390797819697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396673880bfd53e1%3A0x52f5013fae466567!2sSagarawat%20Electricals!5e0!3m2!1sen!2sin!4v1715491117501!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <section class="contact-section">
+      <h2>Contact Us</h2>
+      <p>Address: 25. Dr Bhabha Marg, Near Private Bus Stand, Neemuch</p>
+      <p>Phone: 07423220808, 8989220808</p>
+      <p>Email: paras@sagarawat.in</p>
+    </section>
+    <footer class="footer">
+        <div class="social"> <a href="https://www.facebook.com/sagarawat.ele"><i class="fab fa-facebook"></i></a> <a href="https://www.instagram.com/sagarawat.ele/"><i class="fab fa-instagram"></i></a> <a href="https://api.whatsapp.com/send/?phone=918989220808"><i class="fab fa-whatsapp"></i></a> </div>            <p>&copy; <span id="copyrightYear"></span> Sagarawat Electricals. All rights reserved.</p>
+      </footer> </div>
+        <script>        
+        // Get the current year and update the copyright year
+            var currentYear = new Date().getFullYear();
+            document.getElementById("copyrightYear").textContent = currentYear;
+        </script>
+</body>
+ </html>
