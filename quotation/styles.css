@@ -20,6 +20,12 @@ body {
     font-weight: bold;
 }
 
+/*Button Text Styles */
+
+#loginForm button, #addItemRow, #logoutBtn {
+    font-family: 'Outfit', sans-serif;
+  }
+
 /*Login Form Styles */
 
 #loginForm {
