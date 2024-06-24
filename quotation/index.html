@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap">
+</head>
+<body>
+    <div id="loginContainer" class="container">
+        <h1 class="heading">Login</h1>
+        <form id="loginForm">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="quotationContainer" class="container" style="display: none;">
+        <h1 class="heading">Legrand Quotation Tool ~ Sagarawat Electricals</h1>
+        <div class="toolbar">
+            <label for="familySelect">Family:</label>
+            <select id="familySelect" class="custom-dropdown">
+                <option value="britzy">Britzy</option>
+                <option value="allzy">Allzy</option>
+                <option value="arteor">Arteor</option>
+            </select>
+        </div>
+        <table id="itemsTable">
+            <thead>
+                <tr>
+                    <th class="action-column">Action</th>
+                    <th class="item-column">Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th class="nett-column">Nett</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><button class="removeRowBtn">-</button></td>
+                    <td class="item-column">
+                        <select class="itemSelect custom-dropdown">
+                            <option value="">Select Item</option>
+                        </select>
+                    </td>
+                    <td class="quantity-column"><input type="number" min="0" value="0" class="quantityInput" step="1"></td>
+                    <td class="priceCell">₹0.00</td>
+                    <td class="discount-column">
+                        <div class="discount-container">
+                            <input type="number" min="0" value="0" class="discountInput" step="1">	
+                        </div>
+                    </td>
+                    <td class="nettCell">₹0.00</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="total-section">
+            <div class="gst-checkbox">
+                <input type="checkbox" id="includeGST">
+                <label for="includeGST">Include GST</label>
+            </div>
+            <div id="totalPrice" class="price-breakdown"></div>
+        </div>
+        <button id="addItemRow">Add Item</button>
+        <button id="logoutBtn">Logout</button>
+    </div>
+    <footer>
+        <p>&copy; <span id="copyrightYear"></span> Sagarawat Electricals, 25-26 Dr. Bhabha Marg, Near Private Bus Stand, Neemuch M.P. - 458441</p>
+        <p> Made with ❤️ by Adish Sagarawat in भारत</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
