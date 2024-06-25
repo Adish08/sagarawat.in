@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const VALID_USERNAMES = ['paras', 'ankesh'];
     const VALID_PASSWORDS = ['6408', 'ankeshpatel123'];
 
-    // Add new user and password
+// Add new user and password
 VALID_USERNAMES.push('aksh');
 VALID_PASSWORDS.push('akshbabel123');
 
