@@ -149,38 +149,49 @@ function addRow() {
         });
     }
 
-    // Function to initialize the first row
-    function initializeFirstRow() {
-        const firstRow = itemsTable.querySelector('tr');
-        const firstItemSelect = firstRow.querySelector('.itemSelect');
-        const firstQuantityInput = firstRow.querySelector('.quantityInput');
-        const firstDiscountInput = firstRow.querySelector('.discountInput');
+// Function to initialize the first row
+function initializeFirstRow() {
+    const firstRow = itemsTable.querySelector('tr');
+    const firstItemSelect = firstRow.querySelector('.itemSelect');
+    const firstQuantityInput = firstRow.querySelector('.quantityInput');
+    const firstDiscountInput = firstRow.querySelector('.discountInput');
 
-        Object.keys(items).forEach(item => {
-            const option = document.createElement('option');
-            option.value = item;
-            option.textContent = item;
-            firstItemSelect.appendChild(option);
-        });
+    Object.keys(items).forEach(item => {
+        const option = document.createElement('option');
+        option.value = item;
+        option.textContent = item;
+        firstItemSelect.appendChild(option);
+    });
 
-        const removeRowBtn = firstRow.querySelector('.removeRowBtn');
-        removeRowBtn.addEventListener('click', () => {
-            firstRow.remove();
-            updateTotalPrice();
-        });
+    const removeRowBtn = firstRow.querySelector('.removeRowBtn');
+    removeRowBtn.addEventListener('click', () => {
+        firstRow.remove();
+        updateTotalPrice();
+    });
 
-        firstItemSelect.addEventListener('change', () => updateRowPrice(firstRow));
-        firstQuantityInput.addEventListener('input', () => updateRowPrice(firstRow));
-        firstDiscountInput.addEventListener('input', () => updateRowPrice(firstRow));
+    firstItemSelect.addEventListener('change', () => updateRowPrice(firstRow));
+    firstQuantityInput.addEventListener('input', () => updateRowPrice(firstRow));
+    firstDiscountInput.addEventListener('input', () => updateRowPrice(firstRow));
 
-        firstQuantityInput.addEventListener('wheel', (event) => {
-            event.preventDefault();
-            const delta = Math.sign(event.deltaY);
-            const newValue = Math.max(0, parseInt(firstQuantityInput.value) - delta);
-            firstQuantityInput.value = newValue;
-            updateRowPrice(firstRow);
-        });
-    }
+    firstQuantityInput.addEventListener('wheel', (event) => {
+        event.preventDefault();
+        const delta = Math.sign(event.deltaY);
+        const newValue = Math.max(0, parseInt(firstQuantityInput.value) - delta);
+        firstQuantityInput.value = newValue;
+        updateRowPrice(firstRow);
+    });
+
+    const discountContainer = document.createElement('div');
+    discountContainer.classList.add('discount-container');
+    discountContainer.appendChild(firstDiscountInput);
+    const percentSymbol = document.createElement('span');
+    percentSymbol.classList.add('percent-symbol');
+    percentSymbol.textContent = '%';
+    discountContainer.appendChild(percentSymbol);
+
+    const discountColumn = firstRow.querySelector('.discount-column');
+    discountColumn.appendChild(discountContainer);
+}
 
 // Function to check login credentials
 function validateLogin() {
