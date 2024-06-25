@@ -30,6 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const VALID_USERNAMES = ['paras', 'ankesh'];
     const VALID_PASSWORDS = ['6408', 'ankeshpatel123'];
 
+    // Add new user and password
+VALID_USERNAMES.push('aksh');
+VALID_PASSWORDS.push('akshbabel123');
+
     const SESSION_TIMEOUT = 48 * 60 * 60 * 1000; // 48 hours
 
     let selectedFamily = familySelect.value;
