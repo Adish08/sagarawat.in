@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const username = document.getElementById('username');
     const password = document.getElementById('password');
 
-    const VALID_USERNAMES = ['paras', 'ankesh'];
-    const VALID_PASSWORDS = ['6408', 'ankeshpatel123'];
+    const VALID_USERNAMES = ['paras', 'ankesh', 'aksh'];
+    const VALID_PASSWORDS = ['6408', 'ankeshpatel123', 'akshbabel123'];
     
     const SESSION_TIMEOUT = 48 * 60 * 60 * 1000; // 48 hours
 
