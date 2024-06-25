@@ -200,6 +200,14 @@ VALID_PASSWORDS.push('akshbabel123');
             const newValue = Math.max(0, parseInt(firstQuantityInput.value) - delta);
             firstQuantityInput.value = newValue;
             updateRowPrice(firstRow);
+            
+            firstDiscountInput.addEventListener('wheel', (event) => {
+                event.preventDefault();
+                const delta = Math.sign(event.deltaY) * 0.1; // Change the step to 0.1
+                const newValue = Math.min(100, Math.max(0, parseFloat(firstDiscountInput.value) - delta));
+                firstDiscountInput.value = newValue.toFixed(1); // Format the value to 1 decimal place
+                updateRowPrice(firstRow);
+            });
         });
 
         const discountContainer = document.createElement('div');
