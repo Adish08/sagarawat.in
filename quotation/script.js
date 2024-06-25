@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const username = document.getElementById('username');
     const password = document.getElementById('password');
 
-    const VALID_USERNAMES = ['paras', 'ankesh', 'aksh'];
-    const VALID_PASSWORDS = ['6408', 'ankeshpatel123', 'akshbabel123'];
-    
+    const VALID_USERNAMES = ['paras', 'ankesh'];
+    const VALID_PASSWORDS = ['6408', 'ankeshpatel123'];
+
     const SESSION_TIMEOUT = 48 * 60 * 60 * 1000; // 48 hours
 
     let selectedFamily = familySelect.value;
@@ -91,31 +91,43 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-// Function to add a new row
-function addRow() {
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-        <td><button class="removeRowBtn">-</button></td>
-        <td>
-            <select class="itemSelect custom-dropdown">
-                <option value="">Select Item</option>
-                ${Object.keys(items).map(item => `<option value="${item}">${item}</option>`).join('')}
-            </select>
-        </td>
-        <td><input type="number" min="0" value="0" class="quantityInput" step="1"></td>
-        <td class="priceCell">₹0.00</td>
-        <td class="discount-column">
-            <div class="discount-container">
-                <input type="number" min="0" value="0" class="discountInput" step="1">
-                <span class="percent-symbol">%</span>
-            </div>
-        </td>
-        <td class="nettCell">₹0.00</td>
-    `;
+    // Function to update all discount inputs with the value of the first discount input
+    function updateAllDiscountInputs(value) {
+        const discountInputs = itemsTable.querySelectorAll('.discountInput');
+        discountInputs.forEach((input, index) => {
+            if (index !== 0) { // Skip the first input
+                input.value = value;
+                const row = input.closest('tr');
+                updateRowPrice(row);
+            }
+        });
+    }
 
-    itemsTable.appendChild(newRow);
-    updateRowPrice(newRow);
+    // Function to add a new row
+    function addRow() {
+        const newRow = document.createElement('tr');
+        const firstDiscountInput = document.querySelector('.discountInput');
+        newRow.innerHTML = `
+            <td><button class="removeRowBtn">-</button></td>
+            <td>
+                <select class="itemSelect custom-dropdown">
+                    <option value="">Select Item</option>
+                    ${Object.keys(items).map(item => `<option value="${item}">${item}</option>`).join('')}
+                </select>
+            </td>
+            <td><input type="number" min="0" value="0" class="quantityInput" step="1"></td>
+            <td class="priceCell">₹0.00</td>
+            <td class="discount-column">
+                <div class="discount-container">
+                    <input type="number" min="0" value="${firstDiscountInput.value}" class="discountInput" step="1">
+                    <span class="percent-symbol">%</span>
+                </div>
+            </td>
+            <td class="nettCell">₹0.00</td>
+        `;
 
+        itemsTable.appendChild(newRow);
+        updateRowPrice(newRow);
 
         const removeRowBtn = newRow.querySelector('.removeRowBtn');
         removeRowBtn.addEventListener('click', () => {
@@ -130,7 +142,12 @@ function addRow() {
         quantityInput.addEventListener('input', () => updateRowPrice(newRow));
 
         const discountInput = newRow.querySelector('.discountInput');
-        discountInput.addEventListener('input', () => updateRowPrice(newRow));
+        discountInput.addEventListener('input', () => {
+            if (discountInput === firstDiscountInput) {
+                updateAllDiscountInputs(discountInput.value);
+            }
+            updateRowPrice(newRow);
+        });
 
         quantityInput.addEventListener('wheel', (event) => {
             event.preventDefault();
@@ -149,65 +166,64 @@ function addRow() {
         });
     }
 
-// Function to initialize the first row
-function initializeFirstRow() {
-    const firstRow = itemsTable.querySelector('tr');
-    const firstItemSelect = firstRow.querySelector('.itemSelect');
-    const firstQuantityInput = firstRow.querySelector('.quantityInput');
-    const firstDiscountInput = firstRow.querySelector('.discountInput');
+    // Function to initialize the first row
+    function initializeFirstRow() {
+        const firstRow = itemsTable.querySelector('tr');
+        const firstItemSelect = firstRow.querySelector('.itemSelect');
+        const firstQuantityInput = firstRow.querySelector('.quantityInput');
+        const firstDiscountInput = firstRow.querySelector('.discountInput');
 
-    Object.keys(items).forEach(item => {
-        const option = document.createElement('option');
-        option.value = item;
-        option.textContent = item;
-        firstItemSelect.appendChild(option);
-    });
+        Object.keys(items).forEach(item => {
+            const option = document.createElement('option');
+            option.value = item;
+            option.textContent = item;
+            firstItemSelect.appendChild(option);
+        });
 
-    const removeRowBtn = firstRow.querySelector('.removeRowBtn');
-    removeRowBtn.addEventListener('click', () => {
-        firstRow.remove();
-        updateTotalPrice();
-    });
+        const removeRowBtn = firstRow.querySelector('.removeRowBtn');
+        removeRowBtn.addEventListener('click', () => {
+            firstRow.remove();
+            updateTotalPrice();
+        });
 
-    firstItemSelect.addEventListener('change', () => updateRowPrice(firstRow));
-    firstQuantityInput.addEventListener('input', () => updateRowPrice(firstRow));
-    firstDiscountInput.addEventListener('input', () => updateRowPrice(firstRow));
+        firstItemSelect.addEventListener('change', () => updateRowPrice(firstRow));
+        firstQuantityInput.addEventListener('input', () => updateRowPrice(firstRow));
+        firstDiscountInput.addEventListener('input', () => updateRowPrice(firstRow));
 
-    firstQuantityInput.addEventListener('wheel', (event) => {
-        event.preventDefault();
-        const delta = Math.sign(event.deltaY);
-        const newValue = Math.max(0, parseInt(firstQuantityInput.value) - delta);
-        firstQuantityInput.value = newValue;
-        updateRowPrice(firstRow);
-    });
+        firstQuantityInput.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            const delta = Math.sign(event.deltaY);
+            const newValue = Math.max(0, parseInt(firstQuantityInput.value) - delta);
+            firstQuantityInput.value = newValue;
+            updateRowPrice(firstRow);
+        });
 
-    const discountContainer = document.createElement('div');
-    discountContainer.classList.add('discount-container');
-    discountContainer.appendChild(firstDiscountInput);
-    const percentSymbol = document.createElement('span');
-    percentSymbol.classList.add('percent-symbol');
-    percentSymbol.textContent = '%';
-    discountContainer.appendChild(percentSymbol);
+        const discountContainer = document.createElement('div');
+        discountContainer.classList.add('discount-container');
+        discountContainer.appendChild(firstDiscountInput);
+        const percentSymbol = document.createElement('span');
+        percentSymbol.classList.add('percent-symbol');
+        percentSymbol.textContent = '%';
+        discountContainer.appendChild(percentSymbol);
 
-    const discountColumn = firstRow.querySelector('.discount-column');
-    discountColumn.appendChild(discountContainer);
-}
-
-// Function to check login credentials
-function validateLogin() {
-    const inputUsername = username.value;
-    const inputPassword = password.value;
-
-    const validIndex = VALID_USERNAMES.findIndex((user, index) => user === inputUsername && VALID_PASSWORDS[index] === inputPassword);
-
-    if (validIndex !== -1) {
-        return true;
-    } else {
-        alert('Invalid username or password.');
-        return false;
+        const discountColumn = firstRow.querySelector('.discount-column');
+        discountColumn.appendChild(discountContainer);
     }
-}
 
+    // Function to check login credentials
+    function validateLogin() {
+        const inputUsername = username.value;
+        const inputPassword = password.value;
+
+        const validIndex = VALID_USERNAMES.findIndex((user, index) => user === inputUsername && VALID_PASSWORDS[index] === inputPassword);
+
+        if (validIndex !== -1) {
+            return true;
+        } else {
+            alert('Invalid username or password.');
+            return false;
+        }
+    }
 
     // Function to handle login
     function handleLogin(event) {
@@ -260,4 +276,11 @@ function validateLogin() {
     // Set the current year in the footer
     const currentYear = new Date().getFullYear();
     document.getElementById('copyrightYear').textContent = currentYear;
+
+    // Add this line to add an event listener to the first discount input
+    const firstDiscountInput = document.querySelector('.discountInput');
+    firstDiscountInput.addEventListener('input', () => {
+        updateAllDiscountInputs(firstDiscountInput.value);
+        updateRowPrice(firstDiscountInput.closest('tr'));
+    });
 });
