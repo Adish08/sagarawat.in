@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 // Begin Updating inventory
 
-    const items = {"6a switch": {"Paras": 55, "Ruchi": 55, "Kritika": 55, "Adish": 1808}, "6a socket": {"Paras": 66, "Ruchi": 66, "Kritika": 66, "Adish": 1505}, "16a switch": {"Paras": 77, "Ruchi": 77, "Kritika": 77, "Adish": 1404}, "16a socket": {"Paras": 88, "Ruchi": 88, "Kritika": 88, "Adish": 1303}, "2m plate": {"Paras": 99, "Ruchi": 99, "Kritika": 99, "Adish": 1202}, "5m plate": {"Paras": 111, "Ruchi": 111, "Kritika": 111, "Adish": 1101}, "8m plate": {"Paras": 222, "Ruchi": 222, "Kritika": 333, "Adish": 1000}, "chai": {"Paras": 10, "Ruchi": 20, "Kritika": 30, "Adish": 40}, "pani": {"Paras": 50, "Ruchi": 60, "Kritika": 70, "Adish": 80}, "poha": {"Paras": 90, "Ruchi": 100, "Kritika": 110, "Adish": 120}};
-    const families = {"Paras": "Paras", "Ruchi": "Ruchi", "Kritika": "Kritika", "Adish": "Adish"};
+const items = {"6a switch": {"Arteor": 55, "Allzy": 55, "Britzy": 55, "Mylinc": 1808}, "6a socket": {"Arteor": 66, "Allzy": 66, "Britzy": 66, "Mylinc": 1505}, "16a switch": {"Arteor": 77, "Allzy": 77, "Britzy": 77, "Mylinc": 1404}, "16a socket": {"Arteor": 88, "Allzy": 88, "Britzy": 88, "Mylinc": 1303}, "2m plate": {"Arteor": 99, "Allzy": 99, "Britzy": 99, "Mylinc": 1202}, "5m plate": {"Arteor": 111, "Allzy": 111, "Britzy": 111, "Mylinc": 1101}, "8m plate": {"Arteor": 222, "Allzy": 222, "Britzy": 333, "Mylinc": 1000}};
+const families = {"Arteor": "Arteor", "Allzy": "Allzy", "Britzy": "Britzy", "Mylinc": "Mylinc"};
   
 // END Updating inventory
 
