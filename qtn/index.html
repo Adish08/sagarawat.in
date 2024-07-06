@@ -37,7 +37,7 @@
         <table id="itemsTable">
             <thead>
                 <tr>
-                    <th class="action-column">Action</th>
+                    <th class="action-column">#</th>
                     <th class="item-column">Item</th>
                     <th>Quantity</th>
                     <th class="price-column">Price</th>
@@ -71,15 +71,21 @@
             </div>
             <div id="totalPrice" class="price-breakdown"></div>
         </div>
-        <button id="logoutBtn">Logout</button>
+        <div class="notepad-container">
+            <label for="notepad">Instructions:</label>
+            <textarea id="notepad" rows="4" placeholder="Add notes here...">The quick brown fox jumps 
+                over the lazy 
+                dog</textarea>
+        </div>
     </div>
     <footer>
         <p>&copy; 1980-<span id="copyrightYear"></span> Sagarawat Electricals, 25-26 Dr. Bhabha Marg, Near Private Bus Stand, Neemuch M.P. - 458441</p>
         <p>Made with ❤️ by 
             <a href="https://TheAzonix.t.me" style="color: inherit; text-decoration: underline;">Adish Sagarawat</a> 
-            in भारत.
-          </p>
-              </footer>
+            in भारत.</p>
+        <p>Logout? <a href="#" id="logoutLink" style="color: inherit; text-decoration: underline;">Click Here!</a>
+        </p>    
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

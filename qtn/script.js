@@ -1,10 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     // Begin Updating inventory
-
     const items = {"6a switch": {"Arteor": 95, "Allzy": 75, "Britzy": 65, "Mylinc": 55}, "6a socket": {"Arteor": 66, "Allzy": 76, "Britzy": 86, "Mylinc": 96}, "16a switch": {"Arteor": 77, "Allzy": 87, "Britzy": 97, "Mylinc": 107}, "16a socket": {"Arteor": 88, "Allzy": 85, "Britzy": 98, "Mylinc": 108}, "2m plate": {"Arteor": 99, "Allzy": 65, "Britzy": 42, "Mylinc": 12}, "5m plate": {"Arteor": 111, "Allzy": 111, "Britzy": 111, "Mylinc": 1101}, "8m plate": {"Arteor": 222, "Allzy": 222, "Britzy": 333, "Mylinc": 1000}};
     const families = {"Arteor": "Arteor", "Allzy": "Allzy", "Britzy": "Britzy", "Mylinc": "Mylinc"};
-    
     // END Updating inventory
 
     const itemsTable = document.querySelector('#itemsTable tbody');
@@ -14,9 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginContainer = document.getElementById('loginContainer');
     const quotationContainer = document.getElementById('quotationContainer');
     const loginForm = document.getElementById('loginForm');
-    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutLink = document.getElementById('logoutLink');
     const username = document.getElementById('username');
     const password = document.getElementById('password');
+    const notepad = document.getElementById('notepad');
 
     const VALID_USERNAMES = ['paras', 'ankesh', 'demo'];
     const VALID_PASSWORDS = ['6408', 'ankeshpatel123', 'demo123'];
@@ -128,8 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function addRow() {
         const newRow = document.createElement('tr');
         const firstDiscountInput = document.querySelector('.discountInput');
+        const rowCount = itemsTable.querySelectorAll('tr').length + 1;
         newRow.innerHTML = `
-            <td><button class="removeRowBtn">-</button></td>
+            <td><button class="row-number">${rowCount}.</button></td>
             <td>
                 <select class="itemSelect custom-dropdown">
                     <option value="">Select Item</option>
@@ -150,9 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
         itemsTable.appendChild(newRow);
         updateRowPrice(newRow);
 
-        const removeRowBtn = newRow.querySelector('.removeRowBtn');
-        removeRowBtn.addEventListener('click', () => {
+        const rowNumber = newRow.querySelector('.row-number');
+        rowNumber.addEventListener('click', () => {
             newRow.remove();
+            updateRowNumbers();
             updateTotalPrice();
         });
 
@@ -191,6 +191,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Function to update row numbers
+    function updateRowNumbers() {
+        itemsTable.querySelectorAll('tr').forEach((row, index) => {
+            const rowNumber = row.querySelector('.row-number');
+            if (rowNumber) {
+                rowNumber.textContent = `${index + 1}.`;
+            }
+        });
+    }
+
     // Function to initialize the first row
     function initializeFirstRow() {
         const firstRow = itemsTable.querySelector('tr');
@@ -226,11 +236,17 @@ document.addEventListener('DOMContentLoaded', () => {
             firstDiscountInput.parentNode.insertBefore(percentSymbol, firstDiscountInput.nextSibling);
         }
 
-        const removeRowBtn = firstRow.querySelector('.removeRowBtn');
-        removeRowBtn.addEventListener('click', () => {
-            firstRow.remove();
-            updateTotalPrice();
-        });
+        const rowNumber = firstRow.querySelector('.row-number');
+        if (!rowNumber) {
+            const firstCell = firstRow.querySelector('td');
+            firstCell.innerHTML = '<button class="row-number">1.</button>';
+            const newRowNumber = firstRow.querySelector('.row-number');
+            newRowNumber.addEventListener('click', () => {
+                firstRow.remove();
+                updateRowNumbers();
+                updateTotalPrice();
+            });
+        }
 
         firstItemSelect.addEventListener('change', () => updateRowPrice(firstRow));
         firstQuantityInput.addEventListener('input', () => updateRowPrice(firstRow));
@@ -332,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
         itemsTable.querySelectorAll('tr').forEach(row => updateRowPrice(row));
     });
     includeGSTCheckbox.addEventListener('change', updateTotalPrice);
-    logoutBtn.addEventListener('click', handleLogout);
+    logoutLink.addEventListener('click', handleLogout);
 
     // Initialize the app
     initializeFamilySelect();
@@ -342,4 +358,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set the current year in the footer
     const currentYear = new Date().getFullYear();
     document.getElementById('copyrightYear').textContent = currentYear;
+
+    // Save and load notepad content
+    notepad.value = localStorage.getItem('notepadContent') || notepad.value;
+    notepad.addEventListener('input', () => {
+        localStorage.setItem('notepadContent', notepad.value);
+    });
 });

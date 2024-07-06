@@ -249,3 +249,41 @@ td.nett-column {
     font-size: 0.9em;
     color: #333;
 }
+
+.notepad-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#notepad {
+    width: 30%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Outfit', Arial, sans-serif;
+    resize: vertical;
+}
+
+.notepad-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#logoutLink {
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.row-number {
+    background-color: transparent;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
