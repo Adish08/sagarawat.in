@@ -103,6 +103,10 @@ body {
 
 }
 
+th.price-column, th.nett-column {
+    text-align: right;
+}
+
 .priceCell, .nettCell {
     text-align: right;
 }
