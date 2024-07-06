@@ -349,12 +349,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     includeGSTCheckbox.addEventListener('change', updateTotalPrice);
     logoutLink.addEventListener('click', handleLogout);
-
-    function adjustTextareaHeight() {
-        notepad.style.height = 'auto';
-        notepad.style.height = notepad.scrollHeight + 'px';
-    }
     
+    //Function to adjust notepad height
+    function adjustTextareaHeight() {
+        notepad.style.height = '1px'; 
+        notepad.style.height = Math.min(notepad.scrollHeight, 200) + 'px';
+    }    
     notepad.addEventListener('input', adjustTextareaHeight);
     window.addEventListener('load', adjustTextareaHeight);
     
