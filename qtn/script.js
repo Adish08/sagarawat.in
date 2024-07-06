@@ -30,6 +30,16 @@ function formatCurrency(num) {
     return `₹${num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
+// Function To calculate the Round Off
+function calculateRoundOff(amount) {
+    const roundedAmount = Math.round(amount);
+    const difference = roundedAmount - amount;
+    return {
+        roundedAmount: roundedAmount,
+        difference: difference
+    };
+}
+
 // Function to update the row price
 function updateRowPrice(row) {
     const itemSelect = row.querySelector('.itemSelect');
@@ -71,13 +81,19 @@ function updateTotalPrice() {
         totalPrice = totalAmount + gstAmount;
     }
 
+    const roundOffResult = calculateRoundOff(totalPrice);
+    const roundOffAmount = roundOffResult.difference;
+    const finalTotal = roundOffResult.roundedAmount;
+
     const amountText = `Amount: ${formatCurrency(totalAmount)}`;
     const gstText = includeGSTCheckbox.checked ? `(18% GST) + ${formatCurrency(gstAmount)}` : '';
-    const totalPriceText = `Total Price: ${formatCurrency(totalPrice)}`;
+    const roundOffText = `Round Off: ${roundOffAmount >= 0 ? '+' : '-'} ${formatCurrency(Math.abs(roundOffAmount))}`;
+    const totalPriceText = `Total Price: ${formatCurrency(finalTotal)}`;
 
     totalPriceElement.innerHTML = `
         <div>${amountText}</div>
         ${gstText ? `<div>${gstText}</div>` : ''}
+        <div>${roundOffText}</div>
         <div><strong>${totalPriceText}</strong></div>
     `;
 }
