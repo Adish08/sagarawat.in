@@ -350,6 +350,15 @@ document.addEventListener('DOMContentLoaded', () => {
     includeGSTCheckbox.addEventListener('change', updateTotalPrice);
     logoutLink.addEventListener('click', handleLogout);
 
+    function adjustTextareaHeight() {
+        notepad.style.height = 'auto';
+        notepad.style.height = notepad.scrollHeight + 'px';
+    }
+    
+    notepad.addEventListener('input', adjustTextareaHeight);
+    window.addEventListener('load', adjustTextareaHeight);
+    
+
     // Initialize the app
     initializeFamilySelect();
     initializeFirstRow();
