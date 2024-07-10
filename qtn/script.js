@@ -395,15 +395,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set the current year in the footer
     const currentYear = new Date().getFullYear();
     document.getElementById('copyrightYear').textContent = currentYear;
-
-    // Load saved content and adjust height on page load
-    window.addEventListener('load', () => {
-        const savedContent = localStorage.getItem('notepadContent');
-        if (savedContent) {
-            notepad.value = savedContent;
-        }
-        removeLeadingSpaces();
-        trimContent();
-        adjustTextareaHeight();
-    });
 });
