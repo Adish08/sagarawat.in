@@ -257,6 +257,7 @@ td.nett-column {
     font-family: 'Outfit', Arial, sans-serif;
     resize: vertical;
     overflow: hidden;
+    resize: none;
 }
 
 .notepad-container label {
