@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const SESSION_TIMEOUT = 48 * 60 * 60 * 1000; // 48 hours
 
     let selectedFamily = familySelect.value;
-
     // Function to format numbers as Indian currency
     function formatCurrency(num) {
         return `₹${num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -350,14 +349,43 @@ document.addEventListener('DOMContentLoaded', () => {
     includeGSTCheckbox.addEventListener('change', updateTotalPrice);
     logoutLink.addEventListener('click', handleLogout);
     
-    //Function to adjust notepad height
+    // Function to adjust notepad height
     function adjustTextareaHeight() {
-        notepad.style.height = '1px'; 
-        notepad.style.height = Math.min(notepad.scrollHeight, 200) + 'px';
-    }    
-    notepad.addEventListener('input', adjustTextareaHeight);
-    window.addEventListener('load', adjustTextareaHeight);
-    
+        notepad.style.height = 'auto';
+        const newHeight = Math.min(notepad.scrollHeight, 200);
+        notepad.style.height = `${newHeight}px`;
+    }
+
+    // Function to remove leading and trailing spaces from each line and entire content
+    function trimContent() {
+        const lines = notepad.value.split('\n');
+        const trimmedLines = lines.map(line => line.trim()).filter(line => line !== '');
+        notepad.value = trimmedLines.join('\n').trim();
+    }
+
+    notepad.addEventListener('input', () => {
+        trimContent();
+        adjustTextareaHeight();
+        localStorage.setItem('notepadContent', notepad.value);
+    });
+
+    // Add event listener for keyup to handle backspace and delete keys
+    notepad.addEventListener('keyup', (event) => {
+        if (event.key === 'Backspace' || event.key === 'Delete') {
+            trimContent();
+            adjustTextareaHeight();
+            localStorage.setItem('notepadContent', notepad.value);
+        }
+    });
+
+    // Event listeners
+    loginForm.addEventListener('submit', handleLogin);
+    familySelect.addEventListener('change', () => {
+        selectedFamily = familySelect.value;
+        itemsTable.querySelectorAll('tr').forEach(row => updateRowPrice(row));
+    });
+    includeGSTCheckbox.addEventListener('change', updateTotalPrice);
+    logoutLink.addEventListener('click', handleLogout);
 
     // Initialize the app
     initializeFamilySelect();
@@ -368,9 +396,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentYear = new Date().getFullYear();
     document.getElementById('copyrightYear').textContent = currentYear;
 
-    // Save and load notepad content
-    notepad.value = localStorage.getItem('notepadContent') || notepad.value;
-    notepad.addEventListener('input', () => {
-        localStorage.setItem('notepadContent', notepad.value);
+    // Load saved content and adjust height on page load
+    window.addEventListener('load', () => {
+        const savedContent = localStorage.getItem('notepadContent');
+        if (savedContent) {
+            notepad.value = savedContent;
+        }
+        removeLeadingSpaces();
+        trimContent();
+        adjustTextareaHeight();
     });
 });

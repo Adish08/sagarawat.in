@@ -47,7 +47,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><button class="removeRowBtn">-</button></td>
+                    <td><button class="row-number">1.</button></td>
                     <td class="item-column">
                         <select class="itemSelect custom-dropdown">
                             <option value="">Select Item</option>
@@ -57,25 +57,31 @@
                     <td class="priceCell">₹0.00</td>
                     <td class="discount-column">
                         <div class="discount-container">
-                            <input type="number" min="0" value="0" class="discountInput" step="1">	
+                            <input type="number" min="0" value="0" class="discountInput" step="0.1">
+                            <span class="percent-symbol">%</span>
                         </div>
                     </td>
                     <td class="nettCell">₹0.00</td>
                 </tr>
             </tbody>
         </table>
-        <div class="total-section">
-            <div class="gst-checkbox">
-                <input type="checkbox" id="includeGST">
-                <label for="includeGST">Include GST</label>
+        <div class="bottom-section">
+            <div class="left-column">
+                <div class="notepad-container">
+                    <label for="notepad">Terms & Conditions:</label>
+                    <textarea id="notepad" rows="4" placeholder="Add notes here...">1. Goods Once Sold Will Note Be Taken Back.
+2. Subject To Neemuch Jurisdiction Only.
+3. E & O.E.
+4. Pay at https://sagarawat.in/pay.</textarea>
+                </div>
+                <div class="gst-checkbox">
+                    <input type="checkbox" id="includeGST">
+                    <label for="includeGST">Add GST</label>
+                </div>
             </div>
-            <div id="totalPrice" class="price-breakdown"></div>
-        </div>
-        <div class="notepad-container">
-            <label for="notepad">Terms & Conditions:</label>
-            <textarea id="notepad" rows="4" placeholder="Add notes here...">The quick brown fox jumps
-                over the lazy
-                dog</textarea>
+            <div class="right-column">
+                <div id="totalPrice" class="price-breakdown"></div>
+            </div>
         </div>
     </div>
     <footer>

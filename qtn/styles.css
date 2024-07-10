@@ -146,10 +146,8 @@ td.quantity-column {
 }
 
 .total-section {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-top: 20px;
+    display: block;
+    margin-top: 0;
 }
 
 .gst-checkbox {
@@ -164,6 +162,7 @@ td.quantity-column {
 .price-breakdown {
     text-align: right;
     font-size: 1.1em;
+    margin-top: 10px;
 }
 
 .price-breakdown div {
@@ -250,13 +249,8 @@ td.nett-column {
     color: #333;
 }
 
-.notepad-container {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
 #notepad {
-    width: 30%;
+    width: 75%;
     padding: 10px;
     border: 2px solid #ddd;
     border-radius: 4px;
@@ -287,4 +281,27 @@ td.nett-column {
     margin: 0;
     width: 100%;
     text-align: center;
+}
+
+/* Add these new styles */
+.bottom-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.left-column {
+    width: 60%;
+}
+
+.right-column {
+    width: 35%;
+}
+
+.gst-checkbox {
+    margin-bottom: 15px;
+}
+
+.notepad-container {
+    margin-bottom: 5px;
 }
