@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quotation Tool</title>
+    <title>Legrand Quotation Tool ~ Sagarawat Electricals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap">
 </head>
 <body>
     <div id="loginContainer" class="container">
-        <h1 class="heading">Login</h1>
+        <h1 id="login" class="heading">Login</h1>
         <form id="loginForm">
             <div>
                 <label for="username">Username:</label>
@@ -25,20 +24,23 @@
     </div>
 
     <div id="quotationContainer" class="container" style="display: none;">
-        <h1 class="heading">Legrand Quotation Tool ~ Sagarawat Electricals</h1>
+        <h1 id="legrand-quotation-tool-sagarawat-electricals" class="heading">Legrand Quotation Tool ~ Sagarawat Electricals</h1>
+        
         <div class="toolbar">
             <label for="familySelect">Family:</label>
-            <select id="familySelect" class="custom-dropdown">
-                <option value="britzy">Britzy</option>
-                <option value="allzy">Allzy</option>
-                <option value="arteor">Arteor</option>
-            </select>
+            <select id="familySelect" class="custom-dropdown"></select>
         </div>
+
+        <div class="party-name-container">
+            <label for="partyName">Party Name:</label>
+            <input type="text" id="partyName" placeholder="Enter party name">
+        </div>
+
         <table id="itemsTable">
             <thead>
                 <tr>
-                    <th class="action-column">#</th>
-                    <th class="item-column">Item</th>
+                    <th>#</th>
+                    <th>Item</th>
                     <th>Quantity</th>
                     <th class="price-column">Price</th>
                     <th>Discount</th>
@@ -46,33 +48,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><button class="row-number">1.</button></td>
-                    <td class="item-column">
-                        <select class="itemSelect custom-dropdown">
-                            <option value="">Select Item</option>
-                        </select>
-                    </td>
-                    <td class="quantity-column"><input type="number" min="0" value="0" class="quantityInput" step="1"></td>
-                    <td class="priceCell">₹0.00</td>
-                    <td class="discount-column">
-                        <div class="discount-container">
-                            <input type="number" min="0" value="0" class="discountInput" step="0.1">
-                            <span class="percent-symbol">%</span>
-                        </div>
-                    </td>
-                    <td class="nettCell">₹0.00</td>
-                </tr>
+                <!-- Table rows will be dynamically added here -->
             </tbody>
         </table>
+
         <div class="bottom-section">
             <div class="left-column">
                 <div class="notepad-container">
                     <label for="notepad">Terms & Conditions:</label>
-                    <textarea id="notepad" rows="4" placeholder="Add notes here...">1. Goods Once Sold Will Note Be Taken Back.
-2. Subject To Neemuch Jurisdiction Only.
-3. E & O.E.
-4. Pay at https://sagarawat.in/pay.</textarea>
+                    <textarea id="notepad" rows="4"></textarea>
                 </div>
                 <div class="gst-checkbox">
                     <input type="checkbox" id="includeGST">
@@ -84,14 +68,13 @@
             </div>
         </div>
     </div>
+
     <footer>
-        <p>&copy; 1980-<span id="copyrightYear"></span> Sagarawat Electricals, 25-26 Dr. Bhabha Marg, Near Private Bus Stand, Neemuch M.P. - 458441</p>
-        <p>Made with ❤️ by 
-            <a href="https://TheAzonix.t.me" style="color: inherit; text-decoration: underline;">Adish Sagarawat</a> 
-            in भारत.</p>
-        <p>Logout? <a href="#" id="logoutLink" style="color: inherit; text-decoration: underline;">Click Here!</a>
-        </p>    
+        <p>© 1980-<span id="copyrightYear"></span> Sagarawat Electricals, 25-26 Dr. Bhabha Marg, Near Private Bus Stand, Neemuch M.P. - 458441</p>
+        <p>Made with ❤️ by <a href="https://VertexStudios.t.me" style="color: inherit; text-decoration: underline;">Adish Sagarawat</a> in भारत.</p>
+        <p>Logout? <a href="#" id="logoutLink" style="color: inherit; text-decoration: underline;">Click Here!</a></p>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
