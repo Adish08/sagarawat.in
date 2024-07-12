@@ -6,6 +6,7 @@
     <title>Legrand Quotation Tool - Sagarawat Electricals</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit&family=Quicksand:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <div id="loginContainer" class="container">
@@ -64,6 +65,7 @@
                     <input type="checkbox" id="includeGST">
                     <label for="includeGST">Add GST</label>
                 </div>
+                <button id="generatePdfBtn" class="pdf-button">Generate PDF</button>
             </div>
             <div class="right-column">
                 <div id="totalPrice" class="price-breakdown"></div>

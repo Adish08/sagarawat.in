@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutLink: document.getElementById('logoutLink'),
         username: document.getElementById('username'),
         password: document.getElementById('password'),
-        notepad: document.getElementById('notepad')
+        notepad: document.getElementById('notepad'),
+        generatePdfBtn: document.getElementById('generatePdfBtn'),
+        partyNameInput: document.getElementById('partyName')
     };
 
     const VALID_CREDENTIALS = [
@@ -180,6 +182,25 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.familySelect.value = selectedFamily;
     }
 
+    function generatePdf() {
+        const elementsToHide = [
+            elements.generatePdfBtn,
+            document.querySelector('.gst-checkbox'),
+            document.querySelector('footer')
+        ];
+        elementsToHide.forEach(el => el.style.display = 'none');
+        const opt = {
+            margin: 10,
+            filename: `Quotation_${elements.partyNameInput.value || 'Customer'}.pdf`,
+            image: { type: 'jpeg', quality: 0.99 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(elements.quotationContainer).save().then(() => {
+            elementsToHide.forEach(el => el.style.display = '');
+        });
+    }
+    
     function validateLogin(username, password) {
         return VALID_CREDENTIALS.some(cred => cred.username === username && cred.password === password);
     }
@@ -233,6 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     elements.includeGSTCheckbox.addEventListener('change', updateTotalPrice);
     elements.logoutLink.addEventListener('click', handleLogout);
+    elements.generatePdfBtn.addEventListener('click', generatePdf);
+
 
     elements.notepad.addEventListener('input', () => {
         trimContent();
