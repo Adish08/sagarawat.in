@@ -22,13 +22,11 @@ body {
 }
 
 /*Button Text Styles */
-
-#loginForm button, #logoutBtn {
+#loginForm button{
     font-family: 'Outfit', sans-serif;
-  }
+}
 
 /*Login Form Styles */
-
 #loginForm {
     display: flex;
     flex-direction: column;
@@ -100,7 +98,6 @@ body {
     cursor: pointer;
     font-size: 1em;
     font-family: 'Outfit', sans-serif;
-
 }
 
 th.price-column, th.nett-column {
@@ -284,7 +281,6 @@ td.nett-column {
     text-align: center;
 }
 
-/* Add these new styles */
 .bottom-section {
     display: flex;
     justify-content: space-between;
@@ -308,7 +304,7 @@ td.nett-column {
 }
 
 .party-name-container {
-    display: block;
+    display: flex;
     align-items: center;
     margin-bottom: 15px;
 }
@@ -319,6 +315,26 @@ td.nett-column {
 }
 
 #partyName {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Outfit', Arial, sans-serif;
+    font-size: 1em;
+}
+
+.family-select {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.family-select label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.custom-dropdown {
     flex-grow: 1;
     padding: 8px;
     border: 1px solid #ddd;
