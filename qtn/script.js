@@ -90,14 +90,14 @@ const families = {"Britzy White- White Plate": "Britzy White- White Plate", "Bri
         });
     }
 
-    function handleQuantityInputKeydown(event) {
+    function handleInputKeydown(event) {
         if (event.key === 'Enter') {
             event.preventDefault();
             const currentRow = event.target.closest('tr');
             const nextRow = currentRow.nextElementSibling || addRow();
             nextRow.querySelector('.quantityInput').focus();
         }
-    }
+    }   
 
     function addRow() {
         const newRow = document.createElement('tr');
@@ -143,14 +143,14 @@ const families = {"Britzy White- White Plate": "Britzy White- White Plate", "Bri
 
         itemSelect.addEventListener('change', () => updateRowPrice(row));
         quantityInput.addEventListener('input', () => updateRowPrice(row));
-        quantityInput.addEventListener('keydown', handleQuantityInputKeydown);
-        
+        quantityInput.addEventListener('keydown', handleInputKeydown);
         discountInput.addEventListener('input', () => {
             if (discountInput === document.querySelector('.discountInput')) {
                 updateAllDiscountInputs(discountInput.value);
             }
             updateRowPrice(row);
         });
+        discountInput.addEventListener('keydown', handleInputKeydown);    
 
         [quantityInput, discountInput].forEach(input => {
             input.addEventListener('wheel', (event) => {
