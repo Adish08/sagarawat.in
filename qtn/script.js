@@ -237,19 +237,6 @@ const families = {"Britzy White- White Plate": "Britzy White- White Plate", "Bri
         elements.quotationContainer.style.display = 'none';
     }
 
-    function adjustTextareaHeight() {
-        elements.notepad.style.height = 'auto';
-        elements.notepad.style.height = `${Math.min(elements.notepad.scrollHeight, 200)}px`;
-    }
-
-    function trimContent() {
-        elements.notepad.value = elements.notepad.value.split('\n')
-            .map(line => line.trim())
-            .filter(line => line !== '')
-            .join('\n')
-            .trim();
-    }
-
     elements.loginForm.addEventListener('submit', handleLogin);
     elements.familySelect.addEventListener('change', () => {
         selectedFamily = elements.familySelect.value;
@@ -259,21 +246,34 @@ const families = {"Britzy White- White Plate": "Britzy White- White Plate", "Bri
     elements.logoutLink.addEventListener('click', handleLogout);
     elements.generatePdfBtn.addEventListener('click', generatePdf);
 
+elements.notepad.addEventListener('input', () => {
+    adjustTextareaHeight();
+    localStorage.setItem('notepadContent', elements.notepad.value);
+});
 
-    elements.notepad.addEventListener('input', () => {
-        trimContent();
+elements.notepad.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        const cursorPosition = elements.notepad.selectionStart;
+        const currentValue = elements.notepad.value;
+        const newValue = currentValue.slice(0, cursorPosition) + '\n' + currentValue.slice(cursorPosition);
+        elements.notepad.value = newValue;
+        elements.notepad.setSelectionRange(cursorPosition + 1, cursorPosition + 1);
         adjustTextareaHeight();
         localStorage.setItem('notepadContent', elements.notepad.value);
-    });
+    }
+});
 
-    elements.notepad.addEventListener('keyup', (event) => {
-        if (event.key === 'Backspace' || event.key === 'Delete') {
-            trimContent();
-            adjustTextareaHeight();
-            localStorage.setItem('notepadContent', elements.notepad.value);
-        }
-    });
+function adjustTextareaHeight() {
+    elements.notepad.style.height = 'auto';
+    elements.notepad.style.height = `${Math.min(elements.notepad.scrollHeight, 200)}px`;
+}
 
+// Load saved notepad content
+if (localStorage.getItem('notepadContent')) {
+    elements.notepad.value = localStorage.getItem('notepadContent');
+    adjustTextareaHeight();
+}
     initializeFamilySelect();
     initializeFirstRow();
     checkSession();
