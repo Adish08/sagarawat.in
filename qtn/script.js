@@ -16,7 +16,6 @@ const families = {"Britzy White- White Plate": "Britzy White- White Plate", "Bri
         logoutLink: document.getElementById('logoutLink'),
         username: document.getElementById('username'),
         password: document.getElementById('password'),
-        notepad: document.getElementById('notepad'),
         generatePdfBtn: document.getElementById('generatePdfBtn'),
         partyNameInput: document.getElementById('partyName')
     };
@@ -246,34 +245,6 @@ const families = {"Britzy White- White Plate": "Britzy White- White Plate", "Bri
     elements.logoutLink.addEventListener('click', handleLogout);
     elements.generatePdfBtn.addEventListener('click', generatePdf);
 
-elements.notepad.addEventListener('input', () => {
-    adjustTextareaHeight();
-    localStorage.setItem('notepadContent', elements.notepad.value);
-});
-
-elements.notepad.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        const cursorPosition = elements.notepad.selectionStart;
-        const currentValue = elements.notepad.value;
-        const newValue = currentValue.slice(0, cursorPosition) + '\n' + currentValue.slice(cursorPosition);
-        elements.notepad.value = newValue;
-        elements.notepad.setSelectionRange(cursorPosition + 1, cursorPosition + 1);
-        adjustTextareaHeight();
-        localStorage.setItem('notepadContent', elements.notepad.value);
-    }
-});
-
-function adjustTextareaHeight() {
-    elements.notepad.style.height = 'auto';
-    elements.notepad.style.height = `${Math.min(elements.notepad.scrollHeight, 200)}px`;
-}
-
-// Load saved notepad content
-if (localStorage.getItem('notepadContent')) {
-    elements.notepad.value = localStorage.getItem('notepadContent');
-    adjustTextareaHeight();
-}
     initializeFamilySelect();
     initializeFirstRow();
     checkSession();

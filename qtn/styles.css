@@ -235,9 +235,6 @@ td.nett-column {
     border: 2px solid #ddd;
     border-radius: 4px;
     font-family: 'Outfit', Arial, sans-serif;
-    resize: vertical;
-    overflow: hidden;
-    resize: none;
 }
 
 .notepad-container label {
