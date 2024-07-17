@@ -190,6 +190,7 @@ const families = {"Britzy White- White Plate": "Britzy White- White Plate", "Bri
         function generatePdf() {
             const elementsToHide = [
                 elements.generatePdfBtn,
+                elements.resetQuotationBtn,
                 document.querySelector('.gst-checkbox'),
                 document.querySelector('footer')
             ];
