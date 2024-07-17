@@ -316,7 +316,7 @@ td.nett-column {
     font-weight: bold;  
 }
 
-.pdf-button {
+.pdf-button, .reset-button {
     background-color: #000;
     border: none;
     color: white;
@@ -332,6 +332,6 @@ td.nett-column {
     font-family: 'Outfit', sans-serif;
 }
 
-.pdf-button:hover {
+.pdf-button:hover, .reset-button:hover {
     background-color: #444444;
 }

@@ -6,248 +6,308 @@ const families = {"Britzy White- White Plate": "Britzy White- White Plate", "Bri
     //Inventory Ends
 
     const elements = {
-        itemsTable: document.querySelector('#itemsTable tbody'),
-        familySelect: document.getElementById('familySelect'),
-        totalPriceElement: document.getElementById('totalPrice'),
-        includeGSTCheckbox: document.getElementById('includeGST'),
-        loginContainer: document.getElementById('loginContainer'),
-        quotationContainer: document.getElementById('quotationContainer'),
-        loginForm: document.getElementById('loginForm'),
-        logoutLink: document.getElementById('logoutLink'),
-        username: document.getElementById('username'),
-        password: document.getElementById('password'),
-        generatePdfBtn: document.getElementById('generatePdfBtn'),
-        partyNameInput: document.getElementById('partyName')
-    };
-
-    const VALID_CREDENTIALS = [
-        { username: 'paras', password: '6408' },
-        { username: 'ankesh', password: 'ankeshpatel123' },
-        { username: 'demo', password: 'demo123' }
-    ];
-
-    const SESSION_TIMEOUT = 48 * 60 * 60 * 1000;
-
-    let selectedFamily = elements.familySelect.value;
-
-    function formatCurrency(num) {
-        return `₹${num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    }
-
-    function calculateRoundOff(amount) {
-        const roundedAmount = Math.round(amount);
-        return {
-            roundedAmount,
-            difference: roundedAmount - amount
+            itemsTable: document.querySelector('#itemsTable tbody'),
+            familySelect: document.getElementById('familySelect'),
+            totalPriceElement: document.getElementById('totalPrice'),
+            includeGSTCheckbox: document.getElementById('includeGST'),
+            loginContainer: document.getElementById('loginContainer'),
+            quotationContainer: document.getElementById('quotationContainer'),
+            loginForm: document.getElementById('loginForm'),
+            logoutLink: document.getElementById('logoutLink'),
+            username: document.getElementById('username'),
+            password: document.getElementById('password'),
+            generatePdfBtn: document.getElementById('generatePdfBtn'),
+            partyNameInput: document.getElementById('partyName'),
+            resetQuotationBtn: document.getElementById('resetQuotationBtn')
         };
-    }
-
-    function updateRowPrice(row) {
-        const itemSelect = row.querySelector('.itemSelect');
-        const priceCell = row.querySelector('.priceCell');
-        const quantityInput = row.querySelector('.quantityInput');
-        const discountInput = row.querySelector('.discountInput');
-        const nettCell = row.querySelector('.nettCell');
-
-        const selectedItem = itemSelect.value;
-        const quantity = parseFloat(quantityInput.value) || 0;
-        const discount = parseFloat(discountInput.value) || 0;
-
-        const price = items[selectedItem]?.[selectedFamily] || 0;
-        const discountedPrice = price * (1 - discount / 100);
-        const nett = discountedPrice * quantity;
-
-        priceCell.textContent = formatCurrency(price);
-        nettCell.textContent = formatCurrency(nett);
-
-        updateTotalPrice();
-    }
-
-    function updateTotalPrice() {
-        const totalAmount = Array.from(elements.itemsTable.querySelectorAll('.nettCell'))
-            .reduce((sum, cell) => sum + parseFloat(cell.textContent.replace('₹', '').replace(/,/g, '')), 0);
-
-        const gstAmount = elements.includeGSTCheckbox.checked ? totalAmount * 0.18 : 0;
-        const totalPrice = totalAmount + gstAmount;
-
-        const { roundedAmount: finalTotal, difference: roundOffAmount } = calculateRoundOff(totalPrice);
-
-        elements.totalPriceElement.innerHTML = `
-            <div>Amount: ${formatCurrency(totalAmount)}</div>
-            ${elements.includeGSTCheckbox.checked ? `<div>(18% GST) + ${formatCurrency(gstAmount)}</div>` : ''}
-            <div>Round Off: ${roundOffAmount >= 0 ? '+' : '-'} ${formatCurrency(Math.abs(roundOffAmount))}</div>
-            <div><strong>Total Price: ${formatCurrency(finalTotal)}</strong></div>
-        `;
-    }
-
-    function updateAllDiscountInputs(value) {
-        elements.itemsTable.querySelectorAll('.discountInput').forEach((input, index) => {
-            if (index !== 0) {
-                input.value = value;
-                updateRowPrice(input.closest('tr'));
-            }
-        });
-    }
-
-    function handleInputKeydown(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            const currentRow = event.target.closest('tr');
-            const nextRow = currentRow.nextElementSibling || addRow();
-            nextRow.querySelector('.quantityInput').focus();
+    
+        const VALID_CREDENTIALS = [
+            { username: 'paras', password: '6408' },
+            { username: 'ankesh', password: 'ankeshpatel123' },
+            { username: 'demo', password: 'demo123' }
+        ];
+    
+        const SESSION_TIMEOUT = 48 * 60 * 60 * 1000; // 48 hours
+    
+        let selectedFamily = elements.familySelect.value;
+    
+        function formatCurrency(num) {
+            return `₹${num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         }
-    }   
-
-    function addRow() {
-        const newRow = document.createElement('tr');
-        const firstDiscountInput = document.querySelector('.discountInput');
-        const rowCount = elements.itemsTable.querySelectorAll('tr').length + 1;
-        
-        newRow.innerHTML = `
-            <td><button class="row-number">${rowCount}.</button></td>
-            <td>
-                <select class="itemSelect custom-dropdown">
-                    <option value="">Select Item</option>
-                    ${Object.keys(items).map(item => `<option value="${item}">${item}</option>`).join('')}
-                </select>
-            </td>
-            <td><input type="number" min="0" value="0" class="quantityInput" step="1"></td>
-            <td class="priceCell">₹0.00</td>
-            <td class="discount-column">
-                <div class="discount-container">
-                    <input type="number" min="0" max="100" value="${firstDiscountInput ? firstDiscountInput.value : '0'}" class="discountInput" step="0.1">
-                    <span class="percent-symbol">%</span>
-                </div>
-            </td>
-            <td class="nettCell">₹0.00</td>
-        `;
-
-        elements.itemsTable.appendChild(newRow);
-        setupRowEventListeners(newRow);
-        updateRowPrice(newRow);
-        return newRow;
-    }
-
-    function setupRowEventListeners(row) {
-        const rowNumber = row.querySelector('.row-number');
-        const itemSelect = row.querySelector('.itemSelect');
-        const quantityInput = row.querySelector('.quantityInput');
-        const discountInput = row.querySelector('.discountInput');
-
-        rowNumber.addEventListener('click', () => {
-            row.remove();
-            updateRowNumbers();
+    
+        function calculateRoundOff(amount) {
+            const roundedAmount = Math.round(amount);
+            return {
+                roundedAmount,
+                difference: roundedAmount - amount
+            };
+        }
+    
+        function updateRowPrice(row) {
+            const itemSelect = row.querySelector('.itemSelect');
+            const priceCell = row.querySelector('.priceCell');
+            const quantityInput = row.querySelector('.quantityInput');
+            const discountInput = row.querySelector('.discountInput');
+            const nettCell = row.querySelector('.nettCell');
+    
+            const selectedItem = itemSelect.value;
+            const quantity = parseFloat(quantityInput.value) || 0;
+            const discount = parseFloat(discountInput.value) || 0;
+    
+            const price = items[selectedItem]?.[selectedFamily] || 0;
+            const discountedPrice = price * (1 - discount / 100);
+            const nett = discountedPrice * quantity;
+    
+            priceCell.textContent = formatCurrency(price);
+            nettCell.textContent = formatCurrency(nett);
+    
             updateTotalPrice();
-        });
-
-        itemSelect.addEventListener('change', () => updateRowPrice(row));
-        quantityInput.addEventListener('input', () => updateRowPrice(row));
-        quantityInput.addEventListener('keydown', handleInputKeydown);
-        discountInput.addEventListener('input', () => {
-            if (discountInput === document.querySelector('.discountInput')) {
-                updateAllDiscountInputs(discountInput.value);
-            }
-            updateRowPrice(row);
-        });
-        discountInput.addEventListener('keydown', handleInputKeydown);    
-
-        [quantityInput, discountInput].forEach(input => {
-            input.addEventListener('wheel', (event) => {
+            saveQuotationData();
+        }
+    
+        function updateTotalPrice() {
+            const totalAmount = Array.from(elements.itemsTable.querySelectorAll('.nettCell'))
+                .reduce((sum, cell) => sum + parseFloat(cell.textContent.replace('₹', '').replace(/,/g, '')), 0);
+    
+            const gstAmount = elements.includeGSTCheckbox.checked ? totalAmount * 0.18 : 0;
+            const totalPrice = totalAmount + gstAmount;
+    
+            const { roundedAmount: finalTotal, difference: roundOffAmount } = calculateRoundOff(totalPrice);
+    
+            elements.totalPriceElement.innerHTML = `
+                <div>Amount: ${formatCurrency(totalAmount)}</div>
+                ${elements.includeGSTCheckbox.checked ? `<div>(18% GST) + ${formatCurrency(gstAmount)}</div>` : ''}
+                <div>Round Off: ${roundOffAmount >= 0 ? '+' : '-'} ${formatCurrency(Math.abs(roundOffAmount))}</div>
+                <div><strong>Total Price: ${formatCurrency(finalTotal)}</strong></div>
+            `;
+        }
+    
+        function updateAllDiscountInputs(value) {
+            elements.itemsTable.querySelectorAll('.discountInput').forEach((input, index) => {
+                if (index !== 0) {
+                    input.value = value;
+                    updateRowPrice(input.closest('tr'));
+                }
+            });
+        }
+    
+        function handleInputKeydown(event) {
+            if (event.key === 'Enter') {
                 event.preventDefault();
-                const delta = Math.sign(event.deltaY) * (input === discountInput ? 0.1 : 1);
-                const newValue = Math.max(0, Math.min(input === discountInput ? 100 : Infinity, parseFloat(input.value) - delta));
-                input.value = input === discountInput ? newValue.toFixed(1) : newValue;
-                if (input === discountInput && input === document.querySelector('.discountInput')) {
-                    updateAllDiscountInputs(input.value);
+                const currentRow = event.target.closest('tr');
+                const nextRow = currentRow.nextElementSibling || addRow();
+                nextRow.querySelector('.quantityInput').focus();
+            }
+        }   
+    
+        function addRow() {
+            const newRow = document.createElement('tr');
+            const firstDiscountInput = document.querySelector('.discountInput');
+            const rowCount = elements.itemsTable.querySelectorAll('tr').length + 1;
+            
+            newRow.innerHTML = `
+                <td><button class="row-number">${rowCount}.</button></td>
+                <td>
+                    <select class="itemSelect custom-dropdown">
+                        <option value="">Select Item</option>
+                        ${Object.keys(items).map(item => `<option value="${item}">${item}</option>`).join('')}
+                    </select>
+                </td>
+                <td><input type="number" min="0" value="0" class="quantityInput" step="1"></td>
+                <td class="priceCell">₹0.00</td>
+                <td class="discount-column">
+                    <div class="discount-container">
+                        <input type="number" min="0" max="100" value="${firstDiscountInput ? firstDiscountInput.value : '0'}" class="discountInput" step="0.1">
+                        <span class="percent-symbol">%</span>
+                    </div>
+                </td>
+                <td class="nettCell">₹0.00</td>
+            `;
+    
+            elements.itemsTable.appendChild(newRow);
+            setupRowEventListeners(newRow);
+            updateRowPrice(newRow);
+            return newRow;
+        }
+    
+        function setupRowEventListeners(row) {
+            const rowNumber = row.querySelector('.row-number');
+            const itemSelect = row.querySelector('.itemSelect');
+            const quantityInput = row.querySelector('.quantityInput');
+            const discountInput = row.querySelector('.discountInput');
+    
+            rowNumber.addEventListener('click', () => {
+                row.remove();
+                updateRowNumbers();
+                updateTotalPrice();
+                saveQuotationData();
+            });
+    
+            itemSelect.addEventListener('change', () => updateRowPrice(row));
+            quantityInput.addEventListener('input', () => updateRowPrice(row));
+            quantityInput.addEventListener('keydown', handleInputKeydown);
+            discountInput.addEventListener('input', () => {
+                if (discountInput === document.querySelector('.discountInput')) {
+                    updateAllDiscountInputs(discountInput.value);
                 }
                 updateRowPrice(row);
             });
-        });
-    }
-
-    function updateRowNumbers() {
-        elements.itemsTable.querySelectorAll('.row-number').forEach((button, index) => {
-            button.textContent = `${index + 1}.`;
-        });
-    }
-
-    function initializeFirstRow() {
-        const firstRow = elements.itemsTable.querySelector('tr') || addRow();
-        setupRowEventListeners(firstRow);
-    }
-
-    function initializeFamilySelect() {
-        elements.familySelect.innerHTML = Object.keys(families).map(family => 
-            `<option value="${family}">${family}</option>`
-        ).join('');
-        selectedFamily = Object.keys(families)[0];
-        elements.familySelect.value = selectedFamily;
-    }
-
-    function generatePdf() {
-        const elementsToHide = [
-            elements.generatePdfBtn,
-            document.querySelector('.gst-checkbox'),
-            document.querySelector('footer')
-        ];
-        elementsToHide.forEach(el => el.style.display = 'none');
-        const opt = {
-            margin: 10,
-            filename: `Quotation_${elements.partyNameInput.value || 'Customer'}.pdf`,
-            image: { type: 'jpeg', quality: 0.99 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-        html2pdf().set(opt).from(elements.quotationContainer).save().then(() => {
-            elementsToHide.forEach(el => el.style.display = '');
-        });
-    }
+            discountInput.addEventListener('keydown', handleInputKeydown);    
     
-    function validateLogin(username, password) {
-        return VALID_CREDENTIALS.some(cred => cred.username === username && cred.password === password);
-    }
-
-    function handleLogin(event) {
-        event.preventDefault();
-        if (validateLogin(elements.username.value, elements.password.value)) {
-            elements.loginContainer.style.display = 'none';
-            elements.quotationContainer.style.display = 'block';
-            localStorage.setItem('session', Date.now().toString());
-            updateTotalPrice();
-        } else {
-            alert('Invalid username or password.');
+            [quantityInput, discountInput].forEach(input => {
+                input.addEventListener('wheel', (event) => {
+                    event.preventDefault();
+                    const delta = Math.sign(event.deltaY) * (input === discountInput ? 0.1 : 1);
+                    const newValue = Math.max(0, Math.min(input === discountInput ? 100 : Infinity, parseFloat(input.value) - delta));
+                    input.value = input === discountInput ? newValue.toFixed(1) : newValue;
+                    if (input === discountInput && input === document.querySelector('.discountInput')) {
+                        updateAllDiscountInputs(input.value);
+                    }
+                    updateRowPrice(row);
+                });
+            });
         }
-    }
-
-    function checkSession() {
-        const session = localStorage.getItem('session');
-        if (session && (Date.now() - parseInt(session)) < SESSION_TIMEOUT) {
-            localStorage.setItem('session', Date.now().toString());
-            elements.loginContainer.style.display = 'none';
-            elements.quotationContainer.style.display = 'block';
-        } else {
+    
+        function updateRowNumbers() {
+            elements.itemsTable.querySelectorAll('.row-number').forEach((button, index) => {
+                button.textContent = `${index + 1}.`;
+            });
+        }
+    
+        function initializeFirstRow() {
+            const firstRow = elements.itemsTable.querySelector('tr') || addRow();
+            setupRowEventListeners(firstRow);
+        }
+    
+        function initializeFamilySelect() {
+            elements.familySelect.innerHTML = Object.keys(families).map(family => 
+                `<option value="${family}">${family}</option>`
+            ).join('');
+            selectedFamily = Object.keys(families)[0];
+            elements.familySelect.value = selectedFamily;
+        }
+    
+        function generatePdf() {
+            const elementsToHide = [
+                elements.generatePdfBtn,
+                document.querySelector('.gst-checkbox'),
+                document.querySelector('footer')
+            ];
+            elementsToHide.forEach(el => el.style.display = 'none');
+            const opt = {
+                margin: 10,
+                filename: `Quotation_${elements.partyNameInput.value || 'Customer'}.pdf`,
+                image: { type: 'jpeg', quality: 0.99 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(elements.quotationContainer).save().then(() => {
+                elementsToHide.forEach(el => el.style.display = '');
+            });
+        }
+        
+        function validateLogin(username, password) {
+            return VALID_CREDENTIALS.some(cred => cred.username === username && cred.password === password);
+        }
+    
+        function handleLogin(event) {
+            event.preventDefault();
+            if (validateLogin(elements.username.value, elements.password.value)) {
+                elements.loginContainer.style.display = 'none';
+                elements.quotationContainer.style.display = 'block';
+                localStorage.setItem('session', Date.now().toString());
+                loadQuotationData();
+                updateTotalPrice();
+            } else {
+                alert('Invalid username or password.');
+            }
+        }
+    
+        function checkSession() {
+            const session = localStorage.getItem('session');
+            if (session && (Date.now() - parseInt(session)) < SESSION_TIMEOUT) {
+                localStorage.setItem('session', Date.now().toString());
+                elements.loginContainer.style.display = 'none';
+                elements.quotationContainer.style.display = 'block';
+                loadQuotationData();
+            } else {
+                localStorage.removeItem('session');
+            }
+        }
+    
+        function handleLogout() {
             localStorage.removeItem('session');
+            elements.loginContainer.style.display = 'block';
+            elements.quotationContainer.style.display = 'none';
         }
-    }
-
-    function handleLogout() {
-        localStorage.removeItem('session');
-        elements.loginContainer.style.display = 'block';
-        elements.quotationContainer.style.display = 'none';
-    }
-
-    elements.loginForm.addEventListener('submit', handleLogin);
-    elements.familySelect.addEventListener('change', () => {
-        selectedFamily = elements.familySelect.value;
-        elements.itemsTable.querySelectorAll('tr').forEach(row => updateRowPrice(row));
+    
+        function saveQuotationData() {
+            const rows = Array.from(elements.itemsTable.querySelectorAll('tr')).map(row => ({
+                item: row.querySelector('.itemSelect').value,
+                quantity: row.querySelector('.quantityInput').value,
+                discount: row.querySelector('.discountInput').value
+            }));
+    
+            const quotationData = {
+                rows: rows,
+                family: elements.familySelect.value,
+                includeGST: elements.includeGSTCheckbox.checked,
+                partyName: elements.partyNameInput.value
+            };
+    
+            localStorage.setItem('quotationData', JSON.stringify(quotationData));
+        }
+    
+        function loadQuotationData() {
+            const savedData = localStorage.getItem('quotationData');
+            if (savedData) {
+                const quotationData = JSON.parse(savedData);
+                
+                elements.familySelect.value = quotationData.family;
+                selectedFamily = quotationData.family;
+                elements.includeGSTCheckbox.checked = quotationData.includeGST;
+                elements.partyNameInput.value = quotationData.partyName;
+    
+                elements.itemsTable.innerHTML = '';
+                quotationData.rows.forEach(rowData => {
+                    const newRow = addRow();
+                    newRow.querySelector('.itemSelect').value = rowData.item;
+                    newRow.querySelector('.quantityInput').value = rowData.quantity;
+                    newRow.querySelector('.discountInput').value = rowData.discount;
+                    updateRowPrice(newRow);
+                });
+            } else {
+                initializeFirstRow();
+            }
+        }
+    
+        function resetQuotation() {
+            localStorage.removeItem('quotationData');
+            elements.itemsTable.innerHTML = '';
+            initializeFirstRow();
+            elements.familySelect.value = Object.keys(families)[0];
+            selectedFamily = Object.keys(families)[0];
+            elements.includeGSTCheckbox.checked = false;
+            elements.partyNameInput.value = '';
+            updateTotalPrice();
+        }
+    
+        elements.loginForm.addEventListener('submit', handleLogin);
+        elements.familySelect.addEventListener('change', () => {
+            selectedFamily = elements.familySelect.value;
+            elements.itemsTable.querySelectorAll('tr').forEach(row => updateRowPrice(row));
+        });
+        elements.includeGSTCheckbox.addEventListener('change', () => {
+            updateTotalPrice();
+            saveQuotationData();
+        });
+        elements.logoutLink.addEventListener('click', handleLogout);
+        elements.generatePdfBtn.addEventListener('click', generatePdf);
+        elements.resetQuotationBtn.addEventListener('click', resetQuotation);
+        elements.partyNameInput.addEventListener('input', saveQuotationData);
+    
+        initializeFamilySelect();
+        checkSession();
+    
+        document.getElementById('copyrightYear').textContent = new Date().getFullYear();
     });
-    elements.includeGSTCheckbox.addEventListener('change', updateTotalPrice);
-    elements.logoutLink.addEventListener('click', handleLogout);
-    elements.generatePdfBtn.addEventListener('click', generatePdf);
-
-    initializeFamilySelect();
-    initializeFirstRow();
-    checkSession();
-
-    document.getElementById('copyrightYear').textContent = new Date().getFullYear();
-});
