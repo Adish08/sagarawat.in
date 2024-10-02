@@ -2,12 +2,14 @@
 const currentYear = new Date().getFullYear();
 document.getElementById("copyrightYear").textContent = currentYear;
 
-// Toggle mobile navigation
+// Toggle mobile navigation with animation
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
 navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
     navMenu.classList.toggle('active');
+    document.body.classList.toggle('nav-open'); // Prevent body scroll when menu is open
 });
 
 // Function to get the amount from the URL
@@ -39,9 +41,9 @@ function generateQrCode(upiUrl) {
     let qrCodeWidth = 350; // Default size
     let screenWidth = window.innerWidth;
     if (screenWidth <= 768) {
-        qrCodeWidth = screenWidth * 0.8;
+        qrCodeWidth = screenWidth * 0.8; // 80% of screen width on mobile
     }
-    if (qrCodeWidth > 350) qrCodeWidth = 350;
+    if (qrCodeWidth > 350) qrCodeWidth = 350; // Max size
 
     // Generate new QR code
     new QRCode(document.getElementById('qrcode'), {
