@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    margin: 0; /* Remove default margin */
+    margin: 0;
 }
 
 img {
@@ -140,20 +140,25 @@ main {
     height: auto;
     cursor: pointer;
     transition: transform 0.2s;
-    margin-bottom: 0; /* Remove bottom margin */
+    margin-bottom: 0;
 }
 
 /* Adjusted Spacing Between Elements in .hero-image */
 .hero-image > *:not(:last-child) {
-    margin-bottom: 10px; /* Reduced spacing */
+    margin-bottom: 10px;
 }
 
 /* Adjustments for Desktop Screens */
 @media (min-width: 769px) {
     .hero-image .upi-apps-image {
-        margin-top: 20px; /* Add space above the image */
-        margin-bottom: 10px; /* Minimal space below the image */
+        margin-top: 20px;
+        margin-bottom: 10px; 
     }
+
+        /* Add top padding to main */
+        main {
+            padding-top: 50px;
+        }
 }
 
 /* QR Code Styles */
@@ -199,15 +204,15 @@ main {
 /* Footer Styles */
 .footer-content {
     text-align: center;
-    padding: 10px; /* Reduced padding */
+    padding: 10px;
     flex-shrink: 0;
-    margin-top: auto; /* Push footer to bottom when content is short */
+    margin-top: auto;
 }
 
 .footer-content p {
     font-size: 14px;
     color: #777;
-    margin: 0; /* Remove margins */
+    margin: 0;
 }
 
 hr {
