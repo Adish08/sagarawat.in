@@ -118,7 +118,6 @@ main {
 .hero-image .upi-apps-image {
     max-width: 100%;
     height: auto;
-    margin-bottom: 20px;
     cursor: pointer;
     transition: transform 0.2s;
 }
@@ -126,7 +125,7 @@ main {
     transform: scale(1.05);
 }
 .hero-image > *:not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 /* Hero Section */
@@ -135,19 +134,18 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 80px 20px; /* Reduced padding */
+    padding: 80px 20px;
     width: 100%;
-    box-sizing: border-box; /* Include padding in width calculation */
-}
+    box-sizing: border-box;
 
 /* Footer Styles */
 .footer-content {
     text-align: center;
-    padding: 20px;
-    flex-shrink: 0; /* Prevent the footer from shrinking */
+    padding: 10px;
+    flex-shrink: 0;
+    margin-top: auto;
 }
 
-/* Responsive Adjustments */
 /* Default styles for desktop */
 @media (min-width: 769px) {
     .hero {
@@ -172,6 +170,7 @@ main {
     .hero-image {
         max-width: 400px;
         margin-left: 20px; /* Add margin if needed */
+    }
     }
 }
 
