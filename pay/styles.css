@@ -5,8 +5,17 @@ body {
     background-color: #f2f2f7;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; 
-    margin: 0;
+    min-height: 100vh;
+    margin: 0; /* Remove default margin */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Header Styles */
@@ -64,68 +73,11 @@ nav {
 
 /* Main Content Styles */
 main {
-    flex: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: -70px;
-}
-.hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 100px 20px 80px 20px;
     flex: 1 0 auto;
-}
-.hero-content {
-    max-width: 500px;
-    text-align: center;
-    margin-bottom: 40px;
-}
-.hero-content h1 {
-    font-size: 36px;
-    margin-bottom: 15px;
-    line-height: 1.2;
-    color: #333;
-}
-.hero-content p {
-    font-size: 18px;
-    margin-bottom: 20px;
-    color: #555;
-}
-.btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: #ff6600;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-.btn:hover {
-    background-color: #e65c00;
-}
-.hero-image {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 400px;
-}
-.hero-image .upi-apps-image {
-    max-width: 100%;
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-.hero-image .upi-apps-image:hover {
-    transform: scale(1.05);
-}
-.hero-image > *:not(:last-child) {
-    margin-bottom: 10px;
 }
 
 /* Hero Section */
@@ -137,46 +89,71 @@ main {
     padding: 80px 20px;
     width: 100%;
     box-sizing: border-box;
+}
 
-/* Footer Styles */
-.footer-content {
+.hero-content {
+    max-width: 500px;
     text-align: center;
-    padding: 10px;
-    flex-shrink: 0;
-    margin-top: auto;
+    margin-bottom: 40px;
 }
 
-/* Default styles for desktop */
+.hero-content h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    color: #333;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #ff6600;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e65c00;
+}
+
+/* Hero Image */
+.hero-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+}
+
+/* Adjusted UPI Apps Image Styles */
+.hero-image .upi-apps-image {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-bottom: 0; /* Remove bottom margin */
+}
+
+/* Adjusted Spacing Between Elements in .hero-image */
+.hero-image > *:not(:last-child) {
+    margin-bottom: 10px; /* Reduced spacing */
+}
+
+/* Adjustments for Desktop Screens */
 @media (min-width: 769px) {
-    .hero {
-        padding: 60px 20px; /* Further reduce padding on smaller desktops */
+    .hero-image .upi-apps-image {
+        margin-top: 20px; /* Add space above the image */
+        margin-bottom: 10px; /* Minimal space below the image */
     }
-
-    /* Adjust spacing between header, content, and footer */
-    main {
-        justify-content: space-between; /* Distribute space evenly */
-    }
-
-    /* .hero-content and .hero-image adjustments */
-    .hero {
-        flex-direction: row;
-        align-items: center;
-    }
-    .hero-content {
-        max-width: 500px;
-        text-align: left;
-        margin-right: 20px; /* Reduced margin */
-    }
-    .hero-image {
-        max-width: 400px;
-        margin-left: 20px; /* Add margin if needed */
-    }
-    }
-}
-
-/* Mobile Styles */
-@media (max-width: 768px) {
-    /* ... [mobile styles remain unchanged] ... */
 }
 
 /* QR Code Styles */
@@ -189,6 +166,7 @@ main {
     background-color: #fff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 #qrcode img {
     max-width: 100%;
     height: auto;
@@ -208,10 +186,12 @@ main {
     transition: background-color 0.3s ease;
     margin-top: 20px;
 }
+
 .whatsapp-btn i {
     font-size: 1.5rem;
     margin-right: 8px;
 }
+
 .whatsapp-btn:hover {
     background-color: #1ebe5b;
 }
@@ -219,68 +199,90 @@ main {
 /* Footer Styles */
 .footer-content {
     text-align: center;
-    padding: 20px;
+    padding: 10px; /* Reduced padding */
+    flex-shrink: 0;
+    margin-top: auto; /* Push footer to bottom when content is short */
 }
+
 .footer-content p {
     font-size: 14px;
     color: #777;
+    margin: 0; /* Remove margins */
 }
+
 hr {
     border: none;
     border-top: 1px solid #ddd;
     margin: 0;
 }
 
-/* Responsive Styles */
+/* Responsive Adjustments */
+/* Mobile Styles */
 @media (max-width: 768px) {
     .nav-toggle {
         display: block;
         margin-left: auto;
         margin-right: 30px;
     }
+
     .nav-menu {
         display: none;
         flex-direction: column;
         align-items: flex-start;
         position: absolute;
-        top: 80px;
+        top: 70px;
         left: 0;
         width: 100%;
         background-color: #fff;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         padding: 20px;
     }
+
     .nav-menu.active {
         display: flex;
     }
+
     .nav-menu li {
         margin-right: 0;
         margin-bottom: 10px;
     }
+
     .hero {
         padding-top: 80px;
     }
+
     .hero-content {
         text-align: center;
     }
+
     .hero-image {
         margin-top: 30px;
     }
 }
+
+/* Desktop Styles */
 @media (min-width: 769px) {
+    .hero {
+        padding: 60px 20px;
+    }
+
+    main {
+        justify-content: space-between;
+    }
+
     .hero {
         flex-direction: row;
         align-items: center;
-        justify-content: center;
     }
+
     .hero-content {
+        max-width: 500px;
         text-align: left;
-        margin-right: 40px;
+        margin-right: 20px;
     }
+
     .hero-image {
-        flex-direction: column;
-        align-items: center;
-        width: auto;
         max-width: 400px;
+        margin-left: 20px;
     }
 }
