@@ -32,43 +32,83 @@ header {
     align-items: center;
     padding: 10px 10px;
 }
+
 nav {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
 }
+
 .logo img {
     max-width: 200px;
     height: auto;
 }
+
 .nav-menu {
     list-style: none;
     display: flex;
     margin-left: auto;
     margin-right: 20px;
 }
+
 .nav-menu li {
     margin-right: 20px;
 }
+
 .nav-menu li a {
     text-decoration: none;
     color: #333;
     font-weight: 700;
     transition: color 0.3s ease;
 }
+
 .nav-menu li a:hover {
     color: #ff6600;
 }
+
 .nav-toggle {
     display: none;
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    position: relative;
+    z-index: 999;
 }
+
 .nav-toggle span {
-    display: block;
-    width: 25px;
+    position: absolute;
     height: 3px;
+    width: 100%;
     background-color: #333;
-    margin-bottom: 5px;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle span:nth-child(1) {
+    top: 0;
+}
+
+.nav-toggle span:nth-child(2) {
+    top: 11px;
+}
+
+.nav-toggle span:nth-child(3) {
+    top: 22px;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 11px;
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 11px;
 }
 
 /* Main Content Styles */
@@ -155,10 +195,10 @@ main {
         margin-bottom: 10px; 
     }
 
-        /* Add top padding to main */
-        main {
-            padding-top: 50px;
-        }
+    /* Add top padding to main */
+    main {
+        padding-top: 50px;
+    }
 }
 
 /* QR Code Styles */
@@ -231,32 +271,64 @@ hr {
 /* Responsive Adjustments */
 /* Mobile Styles */
 @media (max-width: 768px) {
+    nav {
+        position: relative;
+        height: 60px;
+    }
+
     .nav-toggle {
         display: block;
-        margin-left: auto;
-        margin-right: 30px;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+    }
+
+    .logo {
+        position: absolute;
+        left: 20px;
+        top: 10px;
     }
 
     .nav-menu {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        position: absolute;
-        top: 70px;
+        display: flex;
+        position: fixed;
+        top: 0;
         left: 0;
+        height: 100%;
         width: 100%;
-        background-color: #fff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.95);
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        z-index: 998;
     }
 
     .nav-menu.active {
-        display: flex;
+        transform: translateY(0);
+        opacity: 1;
     }
 
     .nav-menu li {
-        margin-right: 0;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .nav-menu li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 700;
+        font-size: 24px;
+        transition: color 0.3s ease;
+    }
+
+    .nav-menu li a:hover {
+        color: #ff6600;
+    }
+
+    body.nav-open {
+        overflow: hidden; /* Prevent background scroll when menu is open */
     }
 
     .hero {
