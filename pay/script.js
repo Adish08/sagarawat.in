@@ -35,11 +35,19 @@ function generateQrCode(upiUrl) {
     // Clear any existing QR code
     document.getElementById('qrcode').innerHTML = '';
 
+    // Calculate QR code size based on screen width
+    let qrCodeWidth = 350; // Default size
+    let screenWidth = window.innerWidth;
+    if (screenWidth <= 768) {
+        qrCodeWidth = screenWidth * 0.8;
+    }
+    if (qrCodeWidth > 350) qrCodeWidth = 350;
+
     // Generate new QR code
     new QRCode(document.getElementById('qrcode'), {
         text: upiUrl,
-        width: 350,
-        height: 350,
+        width: qrCodeWidth,
+        height: qrCodeWidth,
         colorDark: "#000000",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H
