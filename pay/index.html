@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags and Title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay To Sagarawat Electricals</title>
+    <meta name="title" content="Pay To Sagarawat Electricals">
+    <meta name="description" content="UPI Payment Page - Scan and Pay Now!">
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sagarawat.in/pay">
+    <meta property="og:title" content="Pay To Sagarawat Electricals">
+    <meta property="og:description" content="UPI Payment Page - Scan and Pay Now!">
+    <meta property="og:image" content="https://sagarawat.in/assets/Pay%20Page%20Header.jpg">
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sagarawat.in/pay">
+    <meta property="twitter:title" content="Pay To Sagarawat Electricals">
+    <meta property="twitter:description" content="UPI Payment Page - Scan and Pay Now!">
+    <meta property="twitter:image" content="https://sagarawat.in/assets/Pay%20Page%20Header.jpg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <!-- Navigation -->
+        <nav>
+            <a href="/" class="logo">
+                <img src="assets/HeaderLogo.svg" alt="Logo" loading="lazy">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="https://api.whatsapp.com/send/?phone=918989220808">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Pay To Sagarawat Electricals</h1>
+                <p>Click on the button below or scan the QR code to pay via UPI. All applications are supported!</p>
+                <a href="#" id="upiPayLink" class="btn" target="_blank">Click To Pay!</a>
+            </div>
+            <div class="hero-image">
+                <!-- UPI Apps Image -->
+                <a href="#" id="upiAppsLink">
+                    <img src="/assets/UPI.webp" alt="UPI Apps" loading="lazy" class="upi-apps-image">
+                </a>
+                <!-- QR Code Container -->
+                <div id="qrcode-container">
+                    <div id="qrcode"></div>
+                </div>
+                <a href="https://api.whatsapp.com/send/?phone=918989220808" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Contact us on WhatsApp
+                </a>
+            </div>
+        </section>
+    </main>
+    <h4 style="text-align: center;">
+        <a href="/bankdetails" style="text-decoration: none; color: #ff6600;">Click Here!</a>
+        to Find Bank Details For RTGS/NEFT.
+    </h4>
+    <div class="footer-content">
+        <hr>
+        <div class="footer-content">
+            <p>&copy; <span id="copyrightYear"></span> Sagarawat Electricals, 25-26 Dr.
+                Bhabha Marg, Near Private Bus Stand, Neemuch M.P. - 458441 | Contact:
+                7423220808, 7423452808</p>
+        </div>
+    </div>
+    <!-- QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
