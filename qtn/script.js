@@ -209,22 +209,35 @@ const families = {"Britzy White- White Plate": "Britzy White- White Plate", "Bri
         }
         
         function validateLogin(username, password) {
-            return VALID_CREDENTIALS.some(cred => cred.username === username && cred.password === password);
-        }
-    
-        function handleLogin(event) {
-            event.preventDefault();
-            if (validateLogin(elements.username.value, elements.password.value)) {
-                elements.loginContainer.style.display = 'none';
-                elements.quotationContainer.style.display = 'block';
-                localStorage.setItem('session', Date.now().toString());
-                loadQuotationData();
-                updateTotalPrice();
-            } else {
-                alert('Invalid username or password.');
-            }
-        }
-    
+    username = username.trim(); // Remove leading/trailing spaces
+    password = password.trim(); // Remove leading/trailing spaces
+
+    return VALID_CREDENTIALS.some(cred => cred.username === username && cred.password === password);
+}
+
+function handleLogin(event) {
+    event.preventDefault();
+    const username = elements.username.value.trim();
+    const password = elements.password.value.trim();
+
+    if (validateLogin(username, password)) {
+        elements.loginContainer.style.display = 'none';
+        elements.quotationContainer.style.display = 'block';
+        localStorage.setItem('session', Date.now().toString());
+        loadQuotationData();
+        updateTotalPrice();
+    } else {
+        alert('Invalid username or password.');
+    }
+}
+
+// Debugging Checks
+console.log('Loaded VALID_CREDENTIALS:', VALID_CREDENTIALS);
+console.log('Username input field:', elements.username);
+console.log('Password input field:', elements.password);
+
+// Attach event listener
+elements.loginForm.addEventListener('submit', handleLogin);
         function checkSession() {
             const session = localStorage.getItem('session');
             if (session && (Date.now() - parseInt(session)) < SESSION_TIMEOUT) {
