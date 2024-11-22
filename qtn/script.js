@@ -24,6 +24,7 @@ const families = {"Britzy White- White Plate": "Britzy White- White Plate", "Bri
         const VALID_CREDENTIALS = [
             { username: 'paras', password: '6408' },
             { username: 'ankesh', password: 'ankeshpatel123' },
+           { username: 'ajay', password: 'ajay787' },
             { username: 'demo', password: 'demo123' }
         ];
     
