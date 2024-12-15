@@ -29,23 +29,40 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <!-- Navigation -->
-        <nav>
-            <a href="/" class="logo">
-                <img src="../assets/HeaderLogo.svg" alt="Logo" loading="lazy">
-            </a>
-            <ul class="nav-menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="https://api.whatsapp.com/send/?phone=918989220808">Contact</a></li>
-            </ul>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+    <header class="modern-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="/" class="logo">
+                    <img src="../assets/HeaderLogo.svg" alt="Logo" loading="lazy">
+                </a>
             </div>
-        </nav>
+            
+            <nav class="modern-nav">
+                <button class="menu-toggle" aria-label="Toggle Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                
+                <div class="nav-links">
+                    <button class="close-menu" aria-label="Close Menu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="https://api.whatsapp.com/send/?phone=918989220808" class="nav-link contact-link">
+                        <span>Contact</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+        </div>
     </header>
     <main>
         <section class="hero">
