@@ -67,4 +67,13 @@ function generateQrCode(upiUrl) {
 
     // Generate the QR code
     generateQrCode(upiUrl);
+
+    // Update amount display
+    const amountDisplay = document.getElementById('amount-display');
+    if (amount) {
+        amountDisplay.textContent = `Amount: ₹ ${amount}`;
+        amountDisplay.style.display = 'block';
+    } else {
+        amountDisplay.style.display = 'none';
+    }
 })();
