@@ -268,7 +268,9 @@ main {
     width: 100%;
     max-width: 350px;
     transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(255, 102, 0, 0.1);
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.1),
+                0 0 40px rgba(255, 102, 0, 0.05);
+    backdrop-filter: blur(10px);
 }
 
 #qrcode-container:hover {
@@ -321,7 +323,12 @@ main {
     font-size: 20px;
     margin: 0;
     font-weight: bold;
-    color: #333;
+    color: black;
+}
+
+.amount-text .currency,
+.amount-text .number {
+    color: #ff6600;
 }
 
 /* WhatsApp Section */

@@ -109,7 +109,7 @@ if (copyrightYear) {
     if (amountDisplay) {
         const amountText = amountDisplay.parentElement;
         if (amount) {
-            amountDisplay.textContent = `₹${amount}`;
+            amountDisplay.innerHTML = `<span class="currency">₹</span><span class="number">${amount}</span>`;
             amountText.style.display = 'block';
         } else {
             amountText.style.display = 'none';
