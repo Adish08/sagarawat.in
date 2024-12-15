@@ -107,11 +107,12 @@ if (copyrightYear) {
 
     // Update amount display
     if (amountDisplay) {
+        const amountText = amountDisplay.parentElement;
         if (amount) {
-            amountDisplay.innerHTML = `<span>₹${amount}</span>`;
-            amountDisplay.style.display = 'block';
+            amountDisplay.textContent = `₹${amount}`;
+            amountText.style.display = 'block';
         } else {
-            amountDisplay.style.display = 'none';
+            amountText.style.display = 'none';
         }
     }
 })();

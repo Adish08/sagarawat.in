@@ -267,7 +267,13 @@ main {
     box-sizing: border-box;
     width: 100%;
     max-width: 350px;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.1);
+}
+
+#qrcode-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 25px rgba(255, 102, 0, 0.15);
 }
 
 #qrcode {
@@ -315,7 +321,7 @@ main {
     font-size: 20px;
     margin: 0;
     font-weight: bold;
-    color: #ff6600;
+    color: #333;
 }
 
 /* WhatsApp Section */
@@ -354,7 +360,8 @@ main {
 h4 {
     text-align: center;
     font-size: clamp(14px, 3vw, 16px);
-    margin: 20px 0;
+    margin: 20px 0 2px 0;
+    padding: 0 20px;
 }
 
 /* Footer Styles */
