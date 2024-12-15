@@ -231,17 +231,42 @@ main {
     margin-top: 10px;
 }
 
-.merchant-name {
-    font-size: 14px;
+.paying-to {
+    font-size: 15px;
     color: #333;
-    margin: 5px 0;
+    margin: 5px 0 2px;
+}
+
+.merchant-name {
+    font-size: 18px;
+    color: #333;
+    margin: 0 0 5px;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
 .amount-text {
-    font-size: 14px;
-    color: #333;
+    font-size: 18px;
     margin: 0;
     font-weight: bold;
+}
+
+/* Style for the "Amount:" text */
+.amount-text::before {
+    content: "Amount: ";
+    color: #333;
+}
+
+/* Style for the rupee symbol and number */
+.amount-text span {
+    color: #ff6600;
+}
+
+/* Responsive adjustments for payment info */
+@media (max-width: 400px) {
+    .merchant-name {
+        font-size: 16px;
+    }
 }
 
 /* WhatsApp Button */

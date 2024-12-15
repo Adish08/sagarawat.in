@@ -71,7 +71,7 @@ function generateQrCode(upiUrl) {
     // Update amount display
     const amountDisplay = document.getElementById('amount-display');
     if (amount) {
-        amountDisplay.textContent = `Amount: ₹ ${amount}`;
+        amountDisplay.innerHTML = `<span>₹${amount}</span>`;
         amountDisplay.style.display = 'block';
     } else {
         amountDisplay.style.display = 'none';
