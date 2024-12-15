@@ -211,8 +211,9 @@ main {
     background-color: #fff;
     box-sizing: border-box;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 350px; /* Ensure it doesn't exceed 350px */
-    width: 100%;
+    max-width: 350px;
+    width: calc(100% - 30px);
+    margin: 0 15px;
 }
 
 #qrcode {
@@ -269,23 +270,64 @@ main {
     }
 }
 
+/* WhatsApp Section */
+.whatsapp-section {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.whatsapp-section p {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 16px;
+}
+
 /* WhatsApp Button */
 .whatsapp-btn {
     display: inline-flex;
     align-items: center;
-    padding: 12px 24px;
+    justify-content: center;
+    padding: 12px 18px;
     background-color: #25d366;
     color: #fff;
     text-decoration: none;
     border-radius: 50px;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    margin-top: 20px;
+    width: auto;
+    max-width: 280px;
+    box-sizing: border-box;
+    font-size: 14px;
+    margin: 0 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .whatsapp-btn i {
-    font-size: 1.5rem;
-    margin-right: 8px;
+    font-size: 1.1rem;
+    margin-right: 6px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 400px) {
+    .whatsapp-btn {
+        font-size: 13px;
+        padding: 8px 12px;
+        max-width: 260px;
+    }
+    
+    .whatsapp-btn i {
+        font-size: 1rem;
+        margin-right: 4px;
+    }
+}
+
+@media (min-width: 769px) {
+    .whatsapp-btn {
+        max-width: 240px;
+        padding: 8px 16px;
+    }
 }
 
 .whatsapp-btn:hover {
