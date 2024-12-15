@@ -225,6 +225,25 @@ main {
     height: auto !important;
 }
 
+/* Payment Info Styles */
+.payment-info {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.merchant-name {
+    font-size: 14px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.amount-text {
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
+}
+
 /* WhatsApp Button */
 .whatsapp-btn {
     display: inline-flex;
@@ -328,7 +347,7 @@ hr {
     }
 
     body.nav-open {
-        overflow: hidden; /* Prevent background scroll when menu is open */
+        overflow: hidden;
     }
 
     .hero {
