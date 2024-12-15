@@ -19,6 +19,17 @@ body {
     box-sizing: border-box;
 }
 
+/* Selection color for orange text */
+::selection {
+    background-color: rgba(255, 102, 0, 0.2);
+    color: #ff6600;
+}
+
+::-moz-selection {
+    background-color: rgba(255, 102, 0, 0.2);
+    color: #ff6600;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -144,14 +155,14 @@ h1, h2, h3 {
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1.25rem;
-    background-color: #ff6600;
+    background-color: rgba(255, 102, 0, 0.9);
     color: white;
     border-radius: 50px;
     transition: all 0.3s ease;
 }
 
 .contact-link:hover {
-    background-color: #e65c00;
+    background-color: rgba(230, 92, 0, 0.9);
     color: white;
     transform: translateY(-2px);
 }
@@ -211,7 +222,7 @@ main {
 .btn {
     display: inline-block;
     padding: 12px 24px;
-    background-color: #ff6600;
+    background-color: rgba(255, 102, 0, 0.9);
     color: #fff;
     text-decoration: none;
     border-radius: 50px;
@@ -221,7 +232,7 @@ main {
 }
 
 .btn:hover {
-    background-color: #e65c00;
+    background-color: rgba(230, 92, 0, 0.9);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 102, 0, 0.2);
 }
@@ -259,7 +270,7 @@ main {
 #qrcode-container {
     position: relative;
     padding: 20px;
-    border: 3px solid #ff6600;
+    border: 3px solid rgba(255, 102, 0, 0.9);
     border-radius: 16px;
     display: inline-block;
     margin: 20px auto;
@@ -291,10 +302,12 @@ main {
     text-align: center;
     margin-top: 20px;
     padding: 15px;
-    background: transparent;
-    border-radius: 12px;
+    background: rgba(255, 102, 0, 0.03);
+    border-radius: 24px;
     width: 100%;
     box-sizing: border-box;
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.08);
+    border: 1px solid rgba(255, 102, 0, 0.08);
 }
 
 .paying-to {
@@ -326,7 +339,7 @@ main {
 
 .amount-text .currency,
 .amount-text .number {
-    color: #ff6600;
+    color: rgba(255, 102, 0, 0.9);
 }
 
 /* WhatsApp Section */
