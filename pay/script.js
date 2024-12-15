@@ -28,7 +28,7 @@ function getAmountFromURL() {
 
 // Function to generate the UPI URL
 function generateUpiUrl(amount) {
-    const baseUrl = 'upi://pay?pa=Q625192146@ybl&pn=SagarawatElectricals&mam=1';
+    const baseUrl = 'upi://pay?pa=Q833310781@ybl&mam=1'; 
     return amount ? `${baseUrl}&am=${encodeURIComponent(amount)}` : baseUrl;
 }
 
@@ -52,7 +52,7 @@ function generateQrCode(upiUrl) {
         height: qrCodeWidth,
         colorDark: "#000000",
         colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
+        correctLevel: QRCode.CorrectLevel.L
     });
 }
 
