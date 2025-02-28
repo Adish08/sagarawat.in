@@ -207,7 +207,7 @@ footer p {
     border: 1px solid #ddd;
     border-radius: 4px;
     display: inline-block;
-    text-align: right;
+    text-align: left;
 }
 
 td.item-column {
