@@ -103,6 +103,22 @@ th.price-column, th.nett-column {
     text-align: right;
 }
 
+th.quantity-column {
+    text-align: right;
+}
+
+.quantityInput {
+    text-align: right;
+}
+
+th.discount-column {
+    text-align: right;
+}
+
+.discount-container {
+    justify-content: flex-end;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;

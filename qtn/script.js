@@ -208,23 +208,22 @@ const families = {"Britzy White- White Plate": "Britzy White- White Plate", "Bri
             const newRow = document.createElement('tr');
             const firstDiscountInput = document.querySelector('.discountInput');
             const rowCount = elements.itemsTable.querySelectorAll('tr').length + 1;
-            
             newRow.innerHTML = `
-                <td><button class="row-number">${rowCount}.</button></td>
-                <td>
-                    <input type="text" class="itemInput" placeholder="Type to search items">
-                </td>
-                <td class="quantity-column">
-                    <input type="number" min="0" value="0" class="quantityInput" step="1">
-                </td>
-                <td class="priceCell">₹0.00</td>
-                <td class="discount-column">
-                    <div class="discount-container">
-                        <input type="number" min="0" max="100" value="${firstDiscountInput ? firstDiscountInput.value : '0'}" class="discountInput" step="0.1">
-                        <span class="percent-symbol">%</span>
-                    </div>
-                </td>
-                <td class="nettCell">₹0.00</td>
+            <td><button class="row-number">${rowCount}.</button></td>
+            <td>
+                <input type="text" class="itemInput" placeholder="Type to search items">
+            </td>
+            <td class="quantity-column">
+                <input type="number" min="0" value="0" class="quantityInput" step="1">
+            </td>
+            <td class="priceCell">₹0.00</td>
+            <td class="discount-column">
+                <div class="discount-container">
+                    <input type="number" min="0" max="100" value="${firstDiscountInput ? firstDiscountInput.value : '0'}" class="discountInput" step="0.1">
+                    <span class="percent-symbol">%</span>
+                </div>
+            </td>
+            <td class="nettCell">₹0.00</td>
             `;
     
             elements.itemsTable.appendChild(newRow);
