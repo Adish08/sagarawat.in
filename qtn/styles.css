@@ -95,11 +95,11 @@ body {
     font-family: 'Outfit', sans-serif;
 }
 
-th.price-column, th.nett-column {
+th.price-column, th.nett-column, th.unit-price-disc-column {
     text-align: right;
 }
 
-.priceCell, .nettCell {
+.priceCell, .nettCell, .unitPriceDiscCell {
     text-align: right;
 }
 
