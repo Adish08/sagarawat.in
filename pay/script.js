@@ -87,10 +87,68 @@ const payment = {
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.L
             });
+
+            // Make QR code clickable after generation
+            this.makeQrCodeClickable(upiUrl);
         } catch (error) {
             console.error('Error generating QR code:', error);
             qrcodeElement.innerHTML = '<p>Error generating QR code. Please try again.</p>';
         }
+    },
+
+    makeQrCodeClickable(upiUrl) {
+        const qrcodeContainer = document.getElementById('qrcode-container');
+        
+        if (!qrcodeContainer) return;
+
+        // Add cursor pointer style to indicate clickability
+        qrcodeContainer.style.cursor = 'pointer';
+        
+        // Store the UPI URL for this container to avoid duplicate listeners
+        if (qrcodeContainer.dataset.upiUrl === upiUrl) {
+            return; // Already configured with this URL
+        }
+        qrcodeContainer.dataset.upiUrl = upiUrl;
+        
+        // Remove any existing listeners by cloning only the attributes, not the content
+        const existingListeners = qrcodeContainer.cloneNode(false);
+        
+        // Add click event listener to the QR code container
+        qrcodeContainer.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            try {
+                // Attempt to open UPI URL
+                window.location.href = upiUrl;
+            } catch (error) {
+                console.error('Error opening UPI link:', error);
+                // Fallback: try opening in new tab
+                try {
+                    window.open(upiUrl, '_blank');
+                } catch (fallbackError) {
+                    console.error('Fallback also failed:', fallbackError);
+                }
+            }
+        });
+
+        // Add hover effect for better UX
+        qrcodeContainer.addEventListener('mouseenter', () => {
+            qrcodeContainer.style.transform = 'translateY(-5px)';
+        });
+
+        qrcodeContainer.addEventListener('mouseleave', () => {
+            qrcodeContainer.style.transform = 'translateY(0)';
+        });
+
+        // Add touch feedback for mobile devices
+        qrcodeContainer.addEventListener('touchstart', () => {
+            qrcodeContainer.style.transform = 'scale(0.98)';
+        });
+
+        qrcodeContainer.addEventListener('touchend', () => {
+            qrcodeContainer.style.transform = 'scale(1)';
+        });
     },
 
     updateUI(amount, upiUrl) {
