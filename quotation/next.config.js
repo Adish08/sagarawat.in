@@ -1,12 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  output: 'export',
   reactStrictMode: true,
-  swcMinify: true,
   images: {
-    unoptimized: true, // Required for static exports in Next.js
+    unoptimized: true,
   },
-  // Add any other Next.js configuration options here
+  // Ensure client-side routing works with static exports
+  trailingSlash: true,
+  // Optional: Add basePath if your site is hosted in a subdirectory
+  // basePath: '/quotation',
 }
 
 module.exports = nextConfig
