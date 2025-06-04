@@ -8,14 +8,20 @@
   NPM_FLAGS = "--prefix"
   NPM_PREFIX = "/opt/buildhome/.npm-global"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["@prisma/client"]
 
+# Handle Next.js routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
+  conditions = {Language = ["en"], Role = ["anonymous", "authenticated"]}
+
+# Handle 404s
+[[redirects]]
+  from = "/*"
+  to = "/404/"
+  status = 404
