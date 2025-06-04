@@ -9,6 +9,7 @@ build/
 .next/
 .nuxt/
 .nuxt-dist/
+quotation/out/
 
 # Environment variables
 .env

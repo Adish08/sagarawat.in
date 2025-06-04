@@ -9,24 +9,30 @@ const nextConfig = {
   skipTrailingSlashRedirect: true,
   // Set basePath to match your Netlify site's subdirectory
   basePath: process.env.NODE_ENV === 'production' ? '/quotation' : '',
-
-  // Generate a unique build ID for cache busting
-  generateBuildId: async () => 'build-' + Date.now(),
   
-  // Disable all rewrites for static export
-  rewrites: undefined,
-  
-  // Ensure proper static export behavior
+  // Disable server-side features for static export
   distDir: 'out',
   
-  // Enable static HTML export
-  exportPathMap: async function() {
-    return {
-      '/': { page: '/' },
-      '/quotation': { page: '/quotation' },
-      '/404': { page: '/404' },
-    };
+  // Webpack configuration
+  webpack: (config, { isServer }) => {
+    // Important: return the modified config
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        os: false,
+      };
+    }
+    return config;
   },
-}
+  
+  // Environment variables
+  env: {
+    NEXT_PUBLIC_SITE_URL: process.env.NODE_ENV === 'production' 
+      ? 'https://your-netlify-site-url.netlify.app' 
+      : 'http://localhost:3000',
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
