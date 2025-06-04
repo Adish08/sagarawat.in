@@ -1,5 +1,5 @@
 [build]
-  command = "cd quotation && npm install && npm run build"
+  command = "cd quotation && npm install --legacy-peer-deps && npm run build"
   publish = "quotation/.next"
   functions = "quotation/.netlify/functions"
 
