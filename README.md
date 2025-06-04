@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9fb128a6-9a80-4b0e-b3d6-5af5a702343f/deploy-status)](https://app.netlify.com/sites/sagarawat/deploys)
 
-✨ **Welcome to Sagarawat Electricals website repository!** ✨
+✨ **Welcome to Sagarawat Electricals website repo!** ✨
 
 ## 📚 About
 This is the source code for the Sagarawat Electricals' website, built with modern web technologies and deployed on Netlify for seamless CI/CD.
@@ -18,28 +18,7 @@ This is the source code for the Sagarawat Electricals' website, built with moder
 - 📱 Fully responsive design
 - 🔍 SEO optimized
 
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v16 or later)
-- npm or yarn
-
-### Installation
-```bash
-# Clone the repository
-git clone https://github.com/your-username/sagarawat.in.git
-
-# Navigate to the project directory
-cd sagarawat.in
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
-```
-
-## 📄 Copyright Notice
+## ©️ Copyright 
 © 2025 Sagarawat Electricals. All rights reserved.
 
 ## ⚠️ Important Notice
