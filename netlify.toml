@@ -10,8 +10,6 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-  [plugins.inputs]
-    functions = "quotation/.netlify/functions"
 
 [functions]
   node_bundler = "esbuild"
