@@ -7,10 +7,25 @@
   NODE_VERSION = "20"
   NPM_FLAGS = "--prefix"
   NPM_PREFIX = "/opt/buildhome/.npm-global"
+  NEXT_TELEMETRY_DISABLED = "1"
 
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["@prisma/client"]
+
+# Handle Next.js static files
+[[redirects]]
+  from = "/_next/static/*"
+  to = "/_next/static/:splat"
+  status = 200
+  force = false
+
+# Handle API routes
+[[redirects]]
+  from = "/api/*"
+  to = "/api/:splat"
+  status = 200
+  force = false
 
 # Handle client-side routing for Next.js
 [[redirects]]
@@ -26,7 +41,7 @@
   to = "/404.html"
   status = 404
 
-# Handle static assets
+# Cache static assets
 [[headers]]
   for = "/_next/static/*"
   [headers.values]

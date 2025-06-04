@@ -2,6 +2,24 @@ import { NextResponse } from "next/server"
 import { promises as fs } from 'fs';
 import path from 'path';
 
+// This tells Next.js to use static generation for this route
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour
+
+// Pre-render the data at build time
+let cachedData: any = null;
+
+async function getProductsData() {
+  if (cachedData) {
+    return cachedData;
+  }
+
+  const jsonDirectory = path.join(process.cwd(), 'app/data');
+  const fileContents = await fs.readFile(jsonDirectory + '/inventory.json', 'utf8');
+  cachedData = JSON.parse(fileContents);
+  return cachedData;
+}
+
 // Define types for our data structure
 interface InventoryData {
   items: {
@@ -16,10 +34,7 @@ interface InventoryData {
 
 export async function GET() {
   try {
-    // Read the JSON file
-    const jsonDirectory = path.join(process.cwd(), 'app/data');
-    const fileContents = await fs.readFile(jsonDirectory + '/inventory.json', 'utf8');
-    const data: InventoryData = JSON.parse(fileContents);
+    const data: InventoryData = await getProductsData();
 
     // Transform the data to match the expected format
     const products = Object.entries(data.items).map(([name, familiesData]) => {

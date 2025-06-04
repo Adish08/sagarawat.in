@@ -3,12 +3,30 @@ const nextConfig = {
   output: 'export',
   reactStrictMode: true,
   images: {
-    unoptimized: true,
+    unoptimized: true, // Required for static exports
   },
-  // Ensure client-side routing works with static exports
   trailingSlash: true,
-  // Optional: Add basePath if your site is hosted in a subdirectory
-  // basePath: '/quotation',
+  skipTrailingSlashRedirect: true,
+  // Set basePath to match your Netlify site's subdirectory
+  basePath: process.env.NODE_ENV === 'production' ? '/quotation' : '',
+
+  // Generate a unique build ID for cache busting
+  generateBuildId: async () => 'build-' + Date.now(),
+  
+  // Disable all rewrites for static export
+  rewrites: undefined,
+  
+  // Ensure proper static export behavior
+  distDir: 'out',
+  
+  // Enable static HTML export
+  exportPathMap: async function() {
+    return {
+      '/': { page: '/' },
+      '/quotation': { page: '/quotation' },
+      '/404': { page: '/404' },
+    };
+  },
 }
 
 module.exports = nextConfig
