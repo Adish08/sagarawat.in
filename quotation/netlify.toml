@@ -1,6 +1,23 @@
 [build]
-  command = "pnpm build"  # Use pnpm since pnpm-lock.yaml is present
-  publish = ".next"         # Default Next.js build output directory
+  command = "npm install && npm run build"
+  publish = ".next"
+  functions = ".netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--prefix"
+  NPM_PREFIX = "/opt/buildhome/.npm-global"
 
 [[plugins]]
-  package = "@netlify/plugin-nextjs" # Essential for Next.js features
+  package = "@netlify/plugin-nextjs"
+  [plugins.inputs]
+    functions = ".netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@prisma/client"]
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
