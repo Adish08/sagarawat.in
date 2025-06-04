@@ -1,0 +1,6 @@
+[build]
+  command = "pnpm build"  # Use pnpm since pnpm-lock.yaml is present
+  publish = ".next"         # Default Next.js build output directory
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs" # Essential for Next.js features
