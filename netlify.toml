@@ -1,7 +1,7 @@
 [build]
-  command = "npm install && npm run build"
-  publish = ".next"
-  functions = ".netlify/functions"
+  command = "cd quotation && npm install && npm run build"
+  publish = "quotation/.next"
+  functions = "quotation/.netlify/functions"
 
 [build.environment]
   NODE_VERSION = "20"
@@ -11,7 +11,7 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
   [plugins.inputs]
-    functions = ".netlify/functions"
+    functions = "quotation/.netlify/functions"
 
 [functions]
   node_bundler = "esbuild"
