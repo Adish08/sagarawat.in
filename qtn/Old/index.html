@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legrand Quotation Tool - Sagarawat Electricals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loginContainer" class="container">
+        <h1 id="login" class="heading">Login</h1>
+        <form id="loginForm">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="quotationContainer" class="container" style="display: none;">
+        <h1 class="heading">Legrand Quotation ~ Sagarawat Electricals</h1>       
+        <div class="toolbar">
+            <div class="party-name-container">
+                <label for="partyName">Party Name:</label>
+                <input type="text" id="partyName">
+            </div>
+            <div class="family-select">
+                <label for="familySelect">Family:</label>
+                <select id="familySelect" class="custom-dropdown"></select>
+            </div>
+        </div>
+        <table id="itemsTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Item</th>
+                    <th class="quantity-column">Quantity</th>
+                    <th class="price-column">Price</th>
+                    <th class="discount-column">Discount</th>
+                    <th class="unit-price-disc-column">Unit Price</th>
+                    <th class="nett-column">Nett Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <div class="bottom-section">
+            <div class="left-column">
+                <div class="notepad-container">
+                    <label for="notepad">Terms & Conditions:</label>
+                    <div id="notepad" rows="4">
+                        1. Goods Once Sold Will Note Be Taken Back.
+                        <br>
+                        2. Subject To Neemuch Jurisdiction Only.
+                        <br>
+                        3. E & O.E.
+                        <br>
+                        4. Pay at <a href="https://sagarawat.in/pay" target="_blank"  style="color: inherit; text-decoration: underline;">https://sagarawat.in/pay</a>.
+                    </div>
+                </div>
+                
+                <div class="gst-checkbox">
+                    <input type="checkbox" id="includeGST">
+                    <label for="includeGST">Add GST</label>
+                </div>
+                <button id="resetQuotationBtn" class="reset-button">Reset Quotation</button>
+            </div>
+            <div class="right-column">
+                <div id="totalPrice" class="price-breakdown"></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 1980-<span id="copyrightYear"></span> Sagarawat Electricals, 25-26 Dr. Bhabha Marg, Near Private Bus Stand, Neemuch M.P. - 458441</p>
+        <p>Made with ❤️ by <a href="https://Adish08.t.me" style="color: inherit; text-decoration: underline;">Adish Sagarawat</a> in भारत.</p>
+        <p>Logout? <a href="#" id="logoutLink" style="color: inherit; text-decoration: underline;">Click Here!</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
