@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Stats</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #f0f2f5; /* A light background to match many themes */
+        }
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden;
+        }
+        iframe {
+            position: absolute;
+            top: -450px; /* Increased to hide more of the top */
+            left: 0;
+            width: 100%;
+            height: calc(100% + 1800px); /* Increased to show graph and hide footer */
+            border: 0;
+            transform: scale(1);
+            transform-origin: 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="iframe-container">
+        <iframe src="https://visitorbadge.io/status?path=https://qtn.sagarawat.in" scrolling="yes"></iframe>
+    </div>
+</body>
+</html>
